@@ -12,21 +12,26 @@ public class Course
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private  Long id;
-   @ManyToOne
-   @JoinColumn(name="category_id", nullable = false)
-   private CourseCategory category;
-
-    @Column(name = "name")
-    private String name;
+    @Column(name = "course_id")
+    private  Long courseId;
 
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "course_name")
+    private String courseName;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+
+    @Column(name = "course_description")
+    private String courseDescription;
+
+    @Column(name = "course_url")
+    private String courseUrl;
+    @Column(name = "course_image_url")
+    private String courseImageUrl;
+
+
+    @ManyToOne
+    @JoinColumn(name="category_id", nullable = false)
+    private CourseCategory category;
     
 
 }

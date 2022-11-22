@@ -12,8 +12,8 @@ import java.util.Set;
 @Data
 public class CourseCategory {
     @Id
-    @Column(name="id")
-    private String id;
+    @Column(name="category_id")
+    private String categoryId;
 
     @Column(name="category_name")
     private String categoryName;
