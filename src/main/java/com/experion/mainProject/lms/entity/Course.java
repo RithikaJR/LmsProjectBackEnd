@@ -23,8 +23,7 @@ public class Course
     @Column(name = "course_description")
     private String courseDescription;
 
-    @Column(name = "course_url")
-    private String courseUrl;
+
     @Column(name = "course_image_url")
     private String courseImageUrl;
 
