@@ -3,6 +3,9 @@
 //import com.experion.mainProject.lms.dao.UserProfileRepository;
 //import com.experion.mainProject.lms.entity.UserProfile;
 //import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//@Service
 //
 //public class UserProfileServiceImpl implements UserProfileService{
 //    @Autowired

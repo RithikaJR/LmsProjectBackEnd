@@ -1,9 +1,11 @@
 //package com.experion.mainProject.lms.controller;
 //
 //import com.experion.mainProject.lms.entity.UserProfile;
+//import com.experion.mainProject.lms.service.UserProfileService;
 //import com.experion.mainProject.lms.service.UserProfileServiceImpl;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RestController;
 //
@@ -12,11 +14,12 @@
 //public class UserProfileController {
 //
 //    @Autowired
-//    UserProfileServiceImpl userProfileService;
+//    UserProfileService userProfileService;
 //
+//@PostMapping("*/user/update")
 //    private UserProfile update(@RequestBody UserProfile userProfile)
 //    {
-//        UserProfileServiceImpl.save(userProfile);
+//        userProfileService.update(userProfile);
 //        return userProfile;
 //    }
 //

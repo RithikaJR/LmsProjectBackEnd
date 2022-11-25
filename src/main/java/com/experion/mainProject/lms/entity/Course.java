@@ -4,6 +4,7 @@ package com.experion.mainProject.lms.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,9 +35,7 @@ public class Course
     private CourseCategory category;
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="course")
-    private Set<Module> modules;
+    private List<Module> modules;
 
-
-    
 
 }
