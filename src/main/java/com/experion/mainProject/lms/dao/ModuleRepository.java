@@ -1,13 +1,16 @@
 package com.experion.mainProject.lms.dao;
 
-import com.experion.mainProject.lms.entity.CourseCategory;
+
+import com.experion.mainProject.lms.entity.Module;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@RepositoryRestResource(collectionResourceRel = "courseCategory",path="course-category")
+@RepositoryRestResource(collectionResourceRel = "module", path="modules")
 @CrossOrigin(origins="*")
-public interface CourseCategoryRepository extends JpaRepository<CourseCategory,String> {
+
+public interface ModuleRepository extends JpaRepository<Module,Long> {
 
 
 }

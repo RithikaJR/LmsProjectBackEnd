@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RepositoryRestResource(collectionResourceRel = "course", path="courses")
 @CrossOrigin(origins="*")
-public interface CourseListRepository extends JpaRepository<Course,String> {
+public interface CourseRepository extends JpaRepository<Course,Long> {
     Page<Course> findAllBycourseName(@Param("name")String courseName,Pageable pageable);
 }
