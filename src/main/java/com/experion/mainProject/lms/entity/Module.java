@@ -17,8 +17,8 @@ public class Module {
     @Column(name = "module_name")
     private String moduleName;
 
-    @Column(name = "module_image_link")
-    private String moduleImageLink;
+    @Column(name = "module_image_url")
+    private String moduleImageUrl;
 
     @Column(name = "module_url")
     private String moduleUrl;
