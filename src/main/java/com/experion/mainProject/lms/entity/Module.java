@@ -1,18 +1,20 @@
 package com.experion.mainProject.lms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="module")
-@Data
+@Getter
+@Setter
 public class Module {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "module_id")
     private  Long moduleId;
-
 
     @Column(name = "module_name")
     private String moduleName;
@@ -24,6 +26,7 @@ public class Module {
     private String moduleUrl;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="course_id", nullable = false)
     private Course course;
 

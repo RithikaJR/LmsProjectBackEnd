@@ -3,8 +3,12 @@ package com.experion.mainProject.lms.entity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.Session;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,7 +23,20 @@ public class CourseCategory {
     private String categoryName;
 
   @OneToMany(cascade=CascadeType.ALL,mappedBy="category")
-   private Set<Course> courses;
+   private List<Course> courses= new ArrayList<>();
+
+    public void add(Course course){
+//        if(course!=null){
+//            if(courses==null){
+//                courses=new HashSet<>();
+//            }
+
+            System.out.println(courses.add(course));
+            course.setCategory(this);
+        }
 
 
-}
+    }
+
+
+

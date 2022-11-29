@@ -1,5 +1,7 @@
 //package com.experion.mainProject.lms.controller;
 //
+//import com.experion.mainProject.lms.dto.RoleUpdate;
+//import com.experion.mainProject.lms.dto.UpdateResponse;
 //import com.experion.mainProject.lms.entity.UserProfile;
 //import com.experion.mainProject.lms.service.UserProfileService;
 //import com.experion.mainProject.lms.service.UserProfileServiceImpl;
@@ -17,10 +19,10 @@
 //    UserProfileService userProfileService;
 //
 //@PostMapping("*/user/update")
-//    private UserProfile update(@RequestBody UserProfile userProfile)
+//    private UpdateResponse update(@RequestBody RoleUpdate roleUpdate)
 //    {
-//        userProfileService.update(userProfile);
-//        return userProfile;
+//       UpdateResponse updateResponse= userProfileService.update(roleUpdate);
+//        return updateResponse;
 //    }
 //
 //
