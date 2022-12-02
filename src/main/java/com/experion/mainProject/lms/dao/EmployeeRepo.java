@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource(collectionResourceRel = "employees", path="employee")
 public interface EmployeeRepo  extends JpaRepository<Employees, Long> {
 
-    Page<Employees> findAllByemployeeFirstName(@Param("name") String employeeFirstName, Pageable pageable);
+    Page<Employees> findByemployeeFirstNameContaining(@Param("name") String employeeFirstName, Pageable pageable);
 //
 //    @RequestMapping(value = "/employee/{employeeEmail}", method = RequestMethod.PUT)
 //    public void updateStudent(@RequestBody Employees employees, @PathVariable String employeeEmail  ) {

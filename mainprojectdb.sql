@@ -96,11 +96,11 @@ LIMIT 0, 1000
 
 -- Date: 2022-11-25 19:00
 */
-INSERT INTO `` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`,`module_image_link`) VALUES (100,1,'Effective Communication','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHca7CDuJZnIXEiQ4Fntfirii-OCau_EkusQ&usqp=CAU','https://www.youtube.com/watch?v=6pYSbdGiDYw',NULL);
-INSERT INTO `` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`,`module_image_link`) VALUES (100,2,'Leadership Skills','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTql9f7dd3ke97aGuaqXBFANVfjGOGMmAguvw&usqp=CAU','https://www.youtube.com/watch?v=0sY3uf3LZZg',NULL);
-INSERT INTO `` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`,`module_image_link`) VALUES (104,3,'core java basics','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrzIDMcw4qBbz9Ccj6qgGm1qM8lOvYvH1TIA&usqp=CAU','https://www.youtube.com/watch?v=Yy1yx9uTHIs',NULL);
-INSERT INTO `` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`,`module_image_link`) VALUES (101,4,'email basics','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEpfoCTGiO1JIrPF2S_32rL-tt92amduy8tA&usqp=CAU','https://www.youtube.com/watch?v=1XctnF7C74s',NULL);
-INSERT INTO `` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`,`module_image_link`) VALUES (103,5,'html css basics','https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics/css-declaration-small.png','https://www.youtube.com/watch?v=G3e-cpL7ofc',NULL);
+INSERT INTO `module` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`) VALUES (100,1,'Effective Communication','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHca7CDuJZnIXEiQ4Fntfirii-OCau_EkusQ&usqp=CAU','https://www.youtube.com/watch?v=6pYSbdGiDYw');
+INSERT INTO `module` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`) VALUES (100,2,'Leadership Skills','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTql9f7dd3ke97aGuaqXBFANVfjGOGMmAguvw&usqp=CAU','https://www.youtube.com/watch?v=0sY3uf3LZZg');
+INSERT INTO `module` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`) VALUES (104,3,'core java basics','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrzIDMcw4qBbz9Ccj6qgGm1qM8lOvYvH1TIA&usqp=CAU','https://www.youtube.com/watch?v=Yy1yx9uTHIs');
+INSERT INTO `module` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`) VALUES (101,4,'email basics','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEpfoCTGiO1JIrPF2S_32rL-tt92amduy8tA&usqp=CAU','https://www.youtube.com/watch?v=1XctnF7C74s');
+INSERT INTO `module` (`course_id`,`module_id`,`module_name`,`module_image_url`,`module_url`) VALUES (103,5,'html css basics','https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics/css-declaration-small.png','https://www.youtube.com/watch?v=G3e-cpL7ofc');
 
 
 
