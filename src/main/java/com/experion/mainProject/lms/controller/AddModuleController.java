@@ -16,8 +16,9 @@ public class AddModuleController {
     }
 
     @PostMapping("/add")
-    public void callAddModule(@RequestBody AddModule addModule) {
-        addModuleService.addModule(addModule);
+    public String callAddModule(@RequestBody AddModule addModule) {
+        String  response=addModuleService.addModule(addModule);
+        return response;
 
     }
 }

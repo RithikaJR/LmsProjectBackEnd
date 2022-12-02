@@ -58,6 +58,7 @@ public class Course {
 //            if (modules == null) {
 //                modules = new HashSet<>();
 //            }
+
         modules.add(module);
         module.setCourse(this);
         }

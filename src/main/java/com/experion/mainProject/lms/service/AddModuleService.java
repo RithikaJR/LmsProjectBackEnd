@@ -5,7 +5,7 @@ import com.experion.mainProject.lms.dto.UpdateResponse;
 
 public interface AddModuleService {
 
-public void addModule(AddModule addModule);
+public String addModule(AddModule addModule);
 
 
 }

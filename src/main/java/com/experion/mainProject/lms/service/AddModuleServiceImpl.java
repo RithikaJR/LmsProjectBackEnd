@@ -22,10 +22,10 @@ private CourseCategoryRepository courseCategoryRepository;
     }
 
     @Override
-    public void addModule(AddModule addModule) {
+    public String addModule(AddModule addModule) {
         //retrive the course info from dto
         Course course=addModule.getCourse();
-        System.out.println(course);
+
         //populate course with modules
         Set<Module> moduleItems=addModule.getModuleItem();
         moduleItems.forEach(item -> course.add(item));
@@ -38,7 +38,7 @@ private CourseCategoryRepository courseCategoryRepository;
         courseCategoryRepository.save(category);
 
 
-
+            return "Course added successfully!";
 
     }
 }
