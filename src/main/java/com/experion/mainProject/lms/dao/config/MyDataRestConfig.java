@@ -25,7 +25,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors){
         RepositoryRestConfigurer.super.configureRepositoryRestConfiguration(config, cors);
-        HttpMethod[] theUnsupportedActions = {HttpMethod.PUT,HttpMethod.DELETE};
+        HttpMethod[] theUnsupportedActions = {};
         config.getExposureConfiguration().forDomainType(Course.class).withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)).withCollectionExposure((metdata, httpMethods) ->httpMethods.disable(theUnsupportedActions) );
         config.getExposureConfiguration().forDomainType(CourseCategory.class).withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)).withCollectionExposure((metdata, httpMethods) ->httpMethods.disable(theUnsupportedActions) );
      exposeIds(config);

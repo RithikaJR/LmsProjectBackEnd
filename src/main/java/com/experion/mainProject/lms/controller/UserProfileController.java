@@ -1,29 +1,34 @@
-//package com.experion.mainProject.lms.controller;
-//
-//import com.experion.mainProject.lms.dto.RoleUpdate;
-//import com.experion.mainProject.lms.dto.UpdateResponse;
-//import com.experion.mainProject.lms.entity.UserProfile;
-//import com.experion.mainProject.lms.service.UserProfileService;
-//import com.experion.mainProject.lms.service.UserProfileServiceImpl;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.CrossOrigin;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//@RestController
-//@CrossOrigin(origins="*")
-//public class UserProfileController {
-//
-//    @Autowired
-//    UserProfileService userProfileService;
-//
-//@PostMapping("*/user/update")
-//    private UpdateResponse update(@RequestBody RoleUpdate roleUpdate)
-//    {
-//       UpdateResponse updateResponse= userProfileService.update(roleUpdate);
-//        return updateResponse;
-//    }
-//
-//
-//}
+package com.experion.mainProject.lms.controller;
+
+import com.experion.mainProject.lms.dto.ChangePassword;
+import com.experion.mainProject.lms.dto.User;
+import com.experion.mainProject.lms.dto.UserResponse;
+import com.experion.mainProject.lms.entity.Role;
+import com.experion.mainProject.lms.service.UserProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@CrossOrigin(origins="*")
+public class UserProfileController {
+
+    @Autowired
+    UserProfileService userProfileService;
+
+@PostMapping("*/user")
+    private UserResponse update(@RequestBody User user)
+    {
+       UserResponse userResponse= userProfileService.userLogin(user);
+        return userResponse;
+    }
+@PutMapping("*/userupdate/{employeeId}")
+private String updateUser(@RequestBody Role role, @PathVariable("employeeId") Long employeeId){
+    return  userProfileService.updateUser(role,employeeId);
+}
+
+@PostMapping("*/user/change-password")
+    private String changePassword(@RequestBody ChangePassword changePassword){
+    return userProfileService.changePassword(changePassword);
+}
+
+}

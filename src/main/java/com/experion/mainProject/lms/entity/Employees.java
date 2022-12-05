@@ -1,12 +1,12 @@
 package com.experion.mainProject.lms.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="employees")
+@DynamicUpdate
 public class Employees {
     @Id
     @Column(name="emp_id")
@@ -18,6 +18,10 @@ public class Employees {
     private String employeeLastName;
     @Column(name="emp_email")
     private String employeeEmail;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private UserProfile userProfile;
 
     public Employees(Long employeeId, String employeeFirstName, String employeeLastName, String employeeEmail) {
         this.employeeId = employeeId;

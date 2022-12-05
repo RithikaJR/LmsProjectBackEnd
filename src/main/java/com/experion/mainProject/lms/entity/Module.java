@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="module")
@@ -29,10 +33,24 @@ public class Module {
     @Column(name = "module_pdf_url")
     private String modulePdfUrl;
 
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name="course_id", nullable = false)
     private Course course;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "module")
+    @JsonIgnore
+    private List<ModuleResource> moduleResources = new ArrayList<>();
+
+    public void add(ModuleResource moduleResource) {   //convenience method
+//        if (module != null) {
+//            if (modules == null) {
+//                modules = new HashSet<>();
+//            }
+
+        moduleResources.add(moduleResource);
+        moduleResource.setModule(this);
+    }
 
 
 }

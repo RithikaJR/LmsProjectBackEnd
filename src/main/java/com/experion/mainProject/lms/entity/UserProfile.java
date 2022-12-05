@@ -3,34 +3,46 @@ package com.experion.mainProject.lms.entity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="userprofile")
-@Getter
-@Setter
+@Data
+@DynamicUpdate
 public class UserProfile {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private Long userId;
 
 
-@Id
-   @Column(name="employee_id")
-   private Long employeeId;
-
-
-
-    @Column(name="user_firstname")
-    private String userFirstName;
-    @Column(name="user_lastname")
-    private String userLastName;
+    @Column(name="emp_name")
+    private String employeeName;
+    @Column(name="user_name")
+    private String userName;
+    @Column(name="user_password")
+    private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="role_id",referencedColumnName = "role_id")
     private Role role;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="emp_id",referencedColumnName = "emp_id")
+    private Employees employee;
 
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "userId=" + userId +
+                ", employeeName='" + employeeName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", employee=" + employee +
+                '}';
+    }
 }
