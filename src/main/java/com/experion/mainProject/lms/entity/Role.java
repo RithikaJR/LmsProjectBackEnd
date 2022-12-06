@@ -1,10 +1,13 @@
 package com.experion.mainProject.lms.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="role")
@@ -20,9 +23,10 @@ public class Role {
     @Column(name="role_name")
     private String roleName;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    private UserProfile userProfile;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+    @JsonIgnore
+    private List<UserProfile> userProfiles = new ArrayList<>();
+
 
 
 }

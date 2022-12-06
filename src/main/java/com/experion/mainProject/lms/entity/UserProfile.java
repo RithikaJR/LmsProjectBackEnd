@@ -1,5 +1,6 @@
 package com.experion.mainProject.lms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,8 +27,9 @@ public class UserProfile {
     @Column(name="user_password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="role_id",referencedColumnName = "role_id")
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name="role_id", nullable = false)
     private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)

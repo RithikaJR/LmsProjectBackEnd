@@ -26,6 +26,7 @@ public class UserProfileServiceImpl implements UserProfileService{
         BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
     Long roleId=null;
    String employeeName="";
+   Long employeeId=null;
 
 
         List<UserProfile> profile=userProfileRepository.findAll();
@@ -36,12 +37,13 @@ public class UserProfileServiceImpl implements UserProfileService{
             if((userProfile.getUserName().equalsIgnoreCase(user.getUserName())) && (bcrypt.matches(user.getUserPassword(),userProfile.getPassword()))){
                 roleId=userProfile.getRole().getRoleId();
                 employeeName=userProfile.getEmployeeName();
+                employeeId=userProfile.getEmployee().getEmployeeId();
             }
 
         }
 
 
-        return new UserResponse(roleId,employeeName);
+        return new UserResponse(roleId,employeeName,employeeId);
     }
 
     @Override
