@@ -7,4 +7,5 @@ public class ChangePassword {
 
     private Long employeeId;
     private String newPassword;
+    private String currentPassword;
 }

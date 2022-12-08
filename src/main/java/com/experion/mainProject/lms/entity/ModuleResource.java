@@ -3,6 +3,7 @@ package com.experion.mainProject.lms.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.tomcat.jni.Time;
 
 import javax.persistence.*;
 
@@ -26,6 +27,9 @@ public class ModuleResource {
 
     @Column(name = "module_resource_url")
     private String moduleResourceUrl;
+
+    @Column(name = "module_resource_duration")
+    private String moduleResourceDuration;
 
     @ManyToOne( fetch = FetchType.LAZY)
     @JsonIgnore

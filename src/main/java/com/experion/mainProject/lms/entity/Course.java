@@ -7,9 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -43,8 +46,12 @@ public class Course
 
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="course")
+
     @JsonIgnore
-    private Set<Module> modules;
+//    private Set<Module> modules;
+
+    private Set<Module> modules=new HashSet<>();
+
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="courses")
     @JsonIgnore
@@ -53,12 +60,24 @@ public class Course
 
 
 
-    public void add(Module module)
-    {
+//    public void add(Module module)
+//    {
+//        System.out.println(modules.add(module));
+//        module.setCourse(this);
+//    }
+//
+//
+
+
+    public void add(Module module){
+//        if(course!=null){
+//            if(courses==null){
+//                courses=new HashSet<>();
+//            }
+
         System.out.println(modules.add(module));
         module.setCourse(this);
     }
-
 
 
 }

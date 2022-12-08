@@ -27,13 +27,8 @@ public class Module {
     @Column(name = "module_name")
     private String moduleName;
 
-    @Column(name = "module_video_url")
-    private String moduleVideoUrl;
 
-    @Column(name = "module_pdf_url")
-    private String modulePdfUrl;
-
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne
     @JsonIgnore
     @JoinColumn(name="course_id", nullable = false)
     private Course course;

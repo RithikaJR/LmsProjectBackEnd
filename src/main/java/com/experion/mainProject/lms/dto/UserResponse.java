@@ -10,6 +10,8 @@ public class UserResponse {
 
     private final Long roleId;
     private final String employeeName;
+    private final Long employeeId;
+    private final int userLoginTracker;
 
 
 

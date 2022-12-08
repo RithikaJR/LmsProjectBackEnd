@@ -10,5 +10,5 @@ public interface UserProfileService {
 UserResponse userLogin(User user);
 String updateUser(Role role, Long employeeId);
 
-//String changePassword(ChangePassword changePassword);
+String changePassword(ChangePassword changePassword);
 }
