@@ -50,7 +50,7 @@ INSERT INTO course VALUES(100,"COMMUNICATION","TIPS FOR EFFECTIVE COMMUNICATION 
 (104,"CORE JAVA","CORE JAVA FOR BEGINNERS","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY_jXc_zdH7jotROmPmhrI0ZFT5C0rfp-F9g&usqp=CAU","3");
 
 
-INSERT INTO role VALUES(007,"Admin"),(008,"learningAdmin"),(123,"endUser");
+INSERT INTO role VALUES(1,"Admin"),(2,"learningAdmin"),(3,"endUser");
 
 
 
@@ -138,6 +138,27 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module_resource` (
  )
  ENGINE=InnoDB
 -- AUTO_INCREMENT = 1;
+
+
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`course_tracker` (
+   `course_id` BIGINT(20) NOT NULL,
+   `emp_id` BIGINT(20) NOT NULL,
+   `status` ENUM('ASSIGNED','STARTED','COMPLETED') DEFAULT 'ASSIGNED',
+    `course_name` varchar(255) DEFAULT NULL,
+   `assigned_date` DATE DEFAULT NULL,
+   `completed_date` DATE DEFAULT NULL,
+   PRIMARY KEY (`course_id`,`emp_id`),
+   CONSTRAINT `fk_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`),
+   CONSTRAINT `fk_courses` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`)
+ )
+ ENGINE=InnoDB
+ AUTO_INCREMENT = 1;
+
+
+insert into course_tracker values(100,1004,"started","Communication","2022-11-23","2022-11-20");
+
+ insert into employees values(1001,"jithin","raj","jithin.r@experionglobal.com"),(1002,"robin","cheriyan mathew","robin.cm@experionglobal.com"),(1003,"vaishnav","l","vaishnav.l@experionglobal.com"),(1004,"rithika","jr","rithika.jr@experionglobal.com"),(1005,"drishya","t","drishya.t@experionglobal.com");
+ 
 
 
 

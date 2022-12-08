@@ -1,5 +1,6 @@
 package com.experion.mainProject.lms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,8 @@ import java.util.Set;
 
 @Entity
 @Table(name="course_category")
-@Data
+@Getter
+@Setter
 public class CourseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,7 @@ public class CourseCategory {
     private String categoryName;
 
   @OneToMany(cascade=CascadeType.ALL,mappedBy="category")
+  @JsonIgnore
    private List<Course> courses= new ArrayList<>();
 
     public void add(Course course){
