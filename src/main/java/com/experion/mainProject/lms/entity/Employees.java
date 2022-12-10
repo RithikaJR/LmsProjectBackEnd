@@ -1,8 +1,13 @@
 package com.experion.mainProject.lms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="employees")
@@ -22,6 +27,10 @@ public class Employees {
     @OneToOne
     @PrimaryKeyJoinColumn
     private UserProfile userProfile;
+
+    @OneToMany(cascade=CascadeType.ALL,mappedBy="employees")
+    @JsonIgnore
+    private List<EnrolledCourse> enrolledCourses=new ArrayList<>();
 
     public Employees(Long employeeId, String employeeFirstName, String employeeLastName, String employeeEmail) {
         this.employeeId = employeeId;

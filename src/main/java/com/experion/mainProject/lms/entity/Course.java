@@ -1,6 +1,7 @@
 package com.experion.mainProject.lms.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -31,11 +32,18 @@ public class Course
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="category_id", nullable = false)
     private CourseCategory category;
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="course")
+    @JsonIgnore
     private Set<Module> modules=new HashSet<>();
+
+    @OneToOne
+    @JsonIgnore
+    @PrimaryKeyJoinColumn
+    private EnrolledCourse enrolledCourse;
 
 
     public void add(Module module){
