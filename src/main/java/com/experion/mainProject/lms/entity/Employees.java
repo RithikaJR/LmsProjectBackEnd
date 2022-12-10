@@ -19,22 +19,18 @@ public class Employees {
 
     @Column(name="emp_firstname")
     private String employeeFirstName;
-    @Column(name="emp_lastname")
+    @Column(name="emp_lasstname")
     private String employeeLastName;
     @Column(name="emp_email")
     private String employeeEmail;
 
     @OneToOne
-    @JsonIgnore
     @PrimaryKeyJoinColumn
     private UserProfile userProfile;
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="employees")
     @JsonIgnore
-    private List<CourseTracker> tracker;
-
-
-
+    private List<EnrolledCourse> enrolledCourses=new ArrayList<>();
 
     public Employees(Long employeeId, String employeeFirstName, String employeeLastName, String employeeEmail) {
         this.employeeId = employeeId;
@@ -78,19 +74,4 @@ public class Employees {
         this.employeeEmail = employeeEmail;
     }
 }
-
-
-
-
-
-//
-//    @ManyToMany
-//    @JoinTable(name ="course_tracker",
-//            joinColumns = @JoinColumn(name ="emp_id"),
-//            inverseJoinColumns = @JoinColumn(name="emp_id")
-//    )
-//    private Set<Course> courses = new HashSet<>();
-//
-//    @OneToMany(cascade=CascadeType.ALL,mappedBy="employees")
-//    private List<CourseTracker> Trackers = new ArrayList<>();
 

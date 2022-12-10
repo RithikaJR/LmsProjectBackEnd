@@ -3,22 +3,14 @@ package com.experion.mainProject.lms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="course")
-@Getter
-@Setter
+@Data
 public class Course
 {
     @Id
@@ -44,29 +36,14 @@ public class Course
     @JoinColumn(name="category_id", nullable = false)
     private CourseCategory category;
 
-
     @OneToMany(cascade=CascadeType.ALL,mappedBy="course")
-
     @JsonIgnore
-//    private Set<Module> modules;
-
     private Set<Module> modules=new HashSet<>();
 
-
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="courses")
+    @OneToOne
     @JsonIgnore
-    private List<CourseTracker> tracker;
-
-
-
-
-//    public void add(Module module)
-//    {
-//        System.out.println(modules.add(module));
-//        module.setCourse(this);
-//    }
-//
-//
+    @PrimaryKeyJoinColumn
+    private EnrolledCourse enrolledCourse;
 
 
     public void add(Module module){
@@ -79,18 +56,4 @@ public class Course
         module.setCourse(this);
     }
 
-
 }
-
-
-
-
-//    @ManyToMany( fetch = FetchType.EAGER)
-//    @JoinColumn(name="course_id", nullable = false)
-//    private Course course;
-//@ManyToMany
-//@JoinTable(
-//        name = "course_tracker",
-//        joinColumns = @JoinColumn(name = "course_id"),
-//        inverseJoinColumns = @JoinColumn(name = "tracking_id"))
-//Set<CourseTracker> courseTrackers;
