@@ -3,20 +3,21 @@ package com.experion.mainProject.lms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="course")
+@Table(name = "course")
 @Data
-public class Course
-{
+@NoArgsConstructor
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")
-    private  Long courseId;
+    private Long courseId;
 
 
     @Column(name = "course_name")
@@ -33,25 +34,20 @@ public class Course
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name="category_id", nullable = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private CourseCategory category;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="course")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "course")
     @JsonIgnore
-    private Set<Module> modules=new HashSet<>();
+    private Set<Module> modules = new HashSet<>();
 
     @OneToOne
     @JsonIgnore
     @PrimaryKeyJoinColumn
     private EnrolledCourse enrolledCourse;
 
-
-    public void add(Module module){
-//        if(course!=null){
-//            if(courses==null){
-//                courses=new HashSet<>();
-//            }
-
+    //Convenience method to add each module to corresponding course
+    public void add(Module module) {
         System.out.println(modules.add(module));
         module.setCourse(this);
     }

@@ -15,9 +15,9 @@ import java.util.Set;
 
 @Service
 
-public class ModuleServicesImpl implements ModuleServices{
+public class ModuleServicesImpl implements ModuleServices {
 
-private CourseCategoryRepository courseCategoryRepository;
+    private CourseCategoryRepository courseCategoryRepository;
 
     public ModuleServicesImpl(CourseCategoryRepository courseCategoryRepository) {
         this.courseCategoryRepository = courseCategoryRepository;
@@ -25,57 +25,30 @@ private CourseCategoryRepository courseCategoryRepository;
 
     @Override
     public String addModule(AddModule addModule) {
-//        //retrive the course info from dto
-//        Course course=addModule.getCourse();
-//
-//        //populate course with modules
-//        Set<Module> moduleItems=addModule.getModuleItem();
-//        moduleItems.forEach(item -> course.add(item));
-//
-//        //populate category with course
-//        CourseCategory category=addModule.getCategory();
-//        category.add(course);
-//
-//        //save to database
-//        courseCategoryRepository.save(category);
+
 
         //retrive the module info from dto
-        Module module=addModule.getModule();
+        Module module = addModule.getModule();
 
         //populate module with module resource
-       Set<ModuleResource> moduleResourceItems=addModule.getModuleResourceItem();
+        Set<ModuleResource> moduleResourceItems = addModule.getModuleResourceItem();
         moduleResourceItems.forEach(item -> module.add(item));
 
         //populate course with module
-       Course course=addModule.getCourse();
-       course.add(module);
+        Course course = addModule.getCourse();
+        course.add(module);
 
         //populate category with course
-       CourseCategory category=addModule.getCategory();
-       category.add(course);
+        CourseCategory category = addModule.getCategory();
+        category.add(course);
 
         //save to database
-       courseCategoryRepository.save(category);
+        courseCategoryRepository.save(category);
 
 
-
-
-            return "Course added successfully!";
+        return "Course added successfully!";
 
     }
 
-//    @Override
-//    public List<Course> deleteCourse(long courseId) {
-//
-//        List<Course> list=new ArrayList<>();
-//
-//            for (Iterator<Course> iterator = list.iterator(); iterator.hasNext(); ) {
-//                Course course = iterator.next();
-//                if (course.getCourseId() == courseId) {
-//                    iterator.remove();
-//                }
-//            }
-//            return list;
-//        }
-    }
+}
 

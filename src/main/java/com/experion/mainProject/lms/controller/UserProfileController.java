@@ -1,6 +1,7 @@
 package com.experion.mainProject.lms.controller;
 
 import com.experion.mainProject.lms.dto.ChangePassword;
+import com.experion.mainProject.lms.dto.ChangePasswordResponse;
 import com.experion.mainProject.lms.dto.User;
 import com.experion.mainProject.lms.dto.UserResponse;
 import com.experion.mainProject.lms.entity.Role;
@@ -27,7 +28,7 @@ private String updateUser(@RequestBody Role role, @PathVariable("employeeId") Lo
 }
 
 @PostMapping("*/user/change-password")
-    private String changePassword(@RequestBody ChangePassword changePassword){
+    private ChangePasswordResponse changePassword(@RequestBody ChangePassword changePassword){
     return userProfileService.changePassword(changePassword);
 }
 

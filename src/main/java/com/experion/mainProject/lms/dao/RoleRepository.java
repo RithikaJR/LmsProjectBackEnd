@@ -6,7 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
-@RepositoryRestResource(collectionResourceRel = "role", path="roles")
-@CrossOrigin(origins="*")
+@RepositoryRestResource(collectionResourceRel = "role", path = "roles")
+@CrossOrigin(origins = "*")
 public interface RoleRepository extends JpaRepository<Role, Long> {
 }

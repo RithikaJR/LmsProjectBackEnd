@@ -12,17 +12,17 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="module")
+@Table(name = "module")
 @Getter
 @Setter
 public class Module {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "module_id")
-    private  Long moduleId;
+    private Long moduleId;
 
     @Column(name = "module_number")
-    private  int moduleNumber;
+    private int moduleNumber;
 
     @Column(name = "module_name")
     private String moduleName;
@@ -30,18 +30,15 @@ public class Module {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name="course_id", nullable = false)
+    @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "module")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "module")
     @JsonIgnore
     private List<ModuleResource> moduleResources = new ArrayList<>();
 
-    public void add(ModuleResource moduleResource) {   //convenience method
-//        if (module != null) {
-//            if (modules == null) {
-//                modules = new HashSet<>();
-//            }
+    //Convenience method to add each module resource to corresponding module
+    public void add(ModuleResource moduleResource) {
 
         moduleResources.add(moduleResource);
         moduleResource.setModule(this);
