@@ -10,27 +10,27 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="employees")
+@Table(name = "employees")
 @DynamicUpdate
 public class Employees {
     @Id
-    @Column(name="emp_id")
+    @Column(name = "emp_id")
     private Long employeeId;
 
-    @Column(name="emp_firstname")
+    @Column(name = "emp_firstname")
     private String employeeFirstName;
-    @Column(name="emp_lasstname")
+    @Column(name = "emp_lasstname")
     private String employeeLastName;
-    @Column(name="emp_email")
+    @Column(name = "emp_email")
     private String employeeEmail;
 
     @OneToOne
     @PrimaryKeyJoinColumn
     private UserProfile userProfile;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="employees")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employees")
     @JsonIgnore
-    private List<EnrolledCourse> enrolledCourses=new ArrayList<>();
+    private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
 
     public Employees(Long employeeId, String employeeFirstName, String employeeLastName, String employeeEmail) {
         this.employeeId = employeeId;

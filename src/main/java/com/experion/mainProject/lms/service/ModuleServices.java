@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ModuleServices {
     public String addModule(AddModule addModule);
-//    public List<Course> deleteCourse(long courseId);
+
 }

@@ -10,23 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="role")
+@Table(name = "role")
 @Data
-@DynamicUpdate
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="role_id")
+    @Column(name = "role_id")
     private Long roleId;
 
-    @Column(name="role_name")
+    @Column(name = "role_name")
     private String roleName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
     @JsonIgnore
     private List<UserProfile> userProfiles = new ArrayList<>();
-
 
 
 }

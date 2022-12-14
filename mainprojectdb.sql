@@ -50,14 +50,6 @@ INSERT INTO course VALUES(100,"COMMUNICATION","TIPS FOR EFFECTIVE COMMUNICATION 
 (104,"CORE JAVA","CORE JAVA FOR BEGINNERS","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY_jXc_zdH7jotROmPmhrI0ZFT5C0rfp-F9g&usqp=CAU","3");
 
 
-INSERT INTO role VALUES(007,"Admin"),(008,"learningAdmin"),(123,"endUser");
-
-
-
-
-
-
-
 
 
 
@@ -69,9 +61,6 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`employees` (
    `emp_email` VARCHAR(255) NULL DEFAULT NULL,
    PRIMARY KEY (`emp_id`))
 ENGINE=InnoDB;
-
-
-
 
 
 
@@ -90,17 +79,28 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module` (
 
 
 
-/*
--- Query: SELECT * FROM lmsdatabase.module
-LIMIT 0, 1000
 
--- Date: 2022-11-25 19:00
-*/
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`session` (
+   `session_id` BIGINT(20) NOT NULL ,
+   `session_name` VARCHAR(255) DEFAULT NULL,
+   `trainer_name` VARCHAR(255) DEFAULT NULL,
+    `session_description` VARCHAR(255) DEFAULT NULL,
+   `session_start_time` time,
+   `session_end_time` time,
+   `session_date` date,
+   `session_cost` decimal,
+    PRIMARY KEY (`session_id`)
+ )
+ ENGINE=InnoDB
+ AUTO_INCREMENT = 1;
+
+
+
 
 
 
 CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`userprofile` (
-   `user_id` BIGINT(20) NOT NULL,
+   `user_id` BIGINT(20) NOT NULL auto_increment,
    `emp_id` BIGINT(20) NOT NULL  UNIQUE,
    `role_id` BIGINT(20) NOT NULL DEFAULT 3 ,
    `emp_name` VARCHAR(255) DEFAULT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module_resource` (
    CONSTRAINT `fk_module` FOREIGN KEY (`module_id`) REFERENCES `module` (`module_id`) on update cascade on delete cascade
  )
  ENGINE=InnoDB
--- AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 1;
 
 
 
