@@ -20,17 +20,11 @@ public class ModuleServicesController {
 
     @PostMapping("/add")
     public String callAddModule(@RequestBody AddModule addModule) {
-        String  response=addModuleService.addModule(addModule);
+        String response = addModuleService.addModule(addModule);
         return response;
 
     }
 
-//    @DeleteMapping("/courses/{courseId}")
-//    public List<Course> deleteCourse(@PathVariable Long courseId)
-//    {
-//
-//        return (List<Course>) this.addModuleService.deleteCourse(courseId);
-//
-//    }
+
 }
 

@@ -25,7 +25,7 @@ public class CourseCategory {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     @JsonIgnore
     private List<Course> courses = new ArrayList<>();
 

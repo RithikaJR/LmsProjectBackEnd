@@ -25,7 +25,19 @@ public class ModuleServicesImpl implements ModuleServices {
 
     @Override
     public String addModule(AddModule addModule) {
-
+//        //retrive the course info from dto
+//        Course course=addModule.getCourse();
+//
+//        //populate course with modules
+//        Set<Module> moduleItems=addModule.getModuleItem();
+//        moduleItems.forEach(item -> course.add(item));
+//
+//        //populate category with course
+//        CourseCategory category=addModule.getCategory();
+//        category.add(course);
+//
+//        //save to database
+//        courseCategoryRepository.save(category);
 
         //retrive the module info from dto
         Module module = addModule.getModule();
