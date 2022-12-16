@@ -40,7 +40,7 @@ public class JwtService implements UserDetailsService {
         String newGeneratedToken = jwtUtil.generateToken(userDetails);
 
         UserProfile user = userDao.findByuserName(userName);
-        return new JwtResponse(user, newGeneratedToken);
+        return new JwtResponse(user, newGeneratedToken,user.getRole().getRoleId(),user.isInitialStatus());
     }
 
     @Override

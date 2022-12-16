@@ -10,8 +10,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "userprofile")
-@Data
-@DynamicUpdate
+@Setter
+@Getter
 public class UserProfile {
 
     @Id
@@ -26,6 +26,8 @@ public class UserProfile {
     private String userName;
     @Column(name = "user_password")
     private String password;
+    @Column(name = "initial_status ")
+    private boolean initialStatus;
 
     @ManyToOne
     @JsonIgnore

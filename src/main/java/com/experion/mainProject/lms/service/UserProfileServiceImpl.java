@@ -1,21 +1,19 @@
 package com.experion.mainProject.lms.service;
 
 import com.experion.mainProject.lms.dao.UserProfileRepository;
-import com.experion.mainProject.lms.dto.ChangePassword;
-import com.experion.mainProject.lms.dto.ChangePasswordResponse;
-import com.experion.mainProject.lms.dto.User;
-import com.experion.mainProject.lms.dto.UserResponse;
+import com.experion.mainProject.lms.dto.*;
 import com.experion.mainProject.lms.entity.Role;
 import com.experion.mainProject.lms.entity.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
-@Service
-
+@Service("userProfileService")
 public class UserProfileServiceImpl implements UserProfileService {
     @Autowired
     UserProfileRepository userProfileRepository;
@@ -94,6 +92,20 @@ public class UserProfileServiceImpl implements UserProfileService {
         }
 
         return new ChangePasswordResponse(null);
+    }
+
+    @Override
+    public void updateInitialLoginStatus(ChangeStatus changeStatus,Long userId)
+    {
+        List<UserProfile> userProfiles= userProfileRepository.findAll();
+        for(UserProfile profile:userProfiles){
+            if(profile.getUserId()==userId){
+                profile.setInitialStatus(changeStatus.isInitialStatus());
+                userProfileRepository.save(profile);
+            }
+        }
+
+
     }
 
 
