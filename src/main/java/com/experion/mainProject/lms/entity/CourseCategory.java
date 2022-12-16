@@ -13,34 +13,30 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="course_category")
+@Table(name = "course_category")
 @Getter
 @Setter
 public class CourseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="category_id")
+    @Column(name = "category_id")
     private String categoryId;
 
-    @Column(name="category_name")
+    @Column(name = "category_name")
     private String categoryName;
 
-  @OneToMany(cascade=CascadeType.ALL,mappedBy="category")
-  @JsonIgnore
-   private List<Course> courses= new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @JsonIgnore
+    private List<Course> courses = new ArrayList<>();
 
-    public void add(Course course){
-//        if(course!=null){
-//            if(courses==null){
-//                courses=new HashSet<>();
-//            }
-
-            System.out.println(courses.add(course));
-            course.setCategory(this);
-        }
-
-
+    //Convenience method to add each course to corresponding category
+    public void add(Course course) {
+        System.out.println(courses.add(course));
+        course.setCategory(this);
     }
+
+
+}
 
 
 

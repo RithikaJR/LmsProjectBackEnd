@@ -6,11 +6,15 @@ import com.experion.mainProject.lms.entity.Module;
 import com.experion.mainProject.lms.entity.ModuleResource;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
 public class AddModule {
 
+
+//    private CourseCategory category;
+   private Course course;
     private Module module;
     private Set<ModuleResource> moduleResourceItem;
 

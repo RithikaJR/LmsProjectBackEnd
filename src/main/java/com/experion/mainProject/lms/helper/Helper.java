@@ -1,11 +1,5 @@
 package com.experion.mainProject.lms.helper;
 
-//import com.experion.mainproject.entity.Employees;
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.xssf.usermodel.XSSFSheet;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 
 import com.experion.mainProject.lms.entity.Employees;
 import org.apache.poi.ss.usermodel.Cell;
@@ -59,14 +53,14 @@ public class Helper {
 
                 Iterator<Cell> cells = row.iterator();
 
-                int cid = 0;
+                int cellId = 0;
 
                 Employees emp = new Employees();
 
                 while (cells.hasNext()) {
                     Cell cell = cells.next();
 
-                    switch (cid) {
+                    switch (cellId) {
                         case 0:
                             emp.setEmployeeId((long) cell.getNumericCellValue());
                             break;
@@ -82,7 +76,7 @@ public class Helper {
                         default:
                             break;
                     }
-                    cid++;
+                    cellId++;
 
                 }
 

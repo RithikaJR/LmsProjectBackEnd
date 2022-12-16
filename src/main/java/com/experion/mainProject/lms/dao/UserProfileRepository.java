@@ -1,6 +1,5 @@
 package com.experion.mainProject.lms.dao;
 
-import com.experion.mainProject.lms.entity.Course;
 import com.experion.mainProject.lms.entity.UserProfile;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.domain.Page;
@@ -13,7 +12,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource(collectionResourceRel = "userprofile", path="users")
 @CrossOrigin(origins="*")
 @DynamicUpdate
-public interface UserProfileRepository extends JpaRepository<UserProfile,Long>
-{
-    Page<UserProfile> findAllByemployeeName(@Param("name")String employeeName, Pageable pageable);
+public interface UserProfileRepository extends JpaRepository<UserProfile,Long> {
+
+
+
+
 }

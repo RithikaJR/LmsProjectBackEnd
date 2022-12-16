@@ -8,15 +8,14 @@ import org.apache.tomcat.jni.Time;
 import javax.persistence.*;
 
 @Entity
-@Table(name="module_resource")
+@Table(name = "module_resource")
 @Getter
 @Setter
 public class ModuleResource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "module_resource_id")
-    private  Long moduleResourceId;
-
+    private Long moduleResourceId;
 
 
     @Column(name = "module_resource_name")
@@ -31,9 +30,9 @@ public class ModuleResource {
     @Column(name = "module_resource_duration")
     private String moduleResourceDuration;
 
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinColumn(name="module_id", nullable = false)
+    @JoinColumn(name = "module_id", nullable = false)
     private Module module;
 
     @OneToOne

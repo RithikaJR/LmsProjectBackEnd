@@ -7,6 +7,7 @@ import com.experion.mainProject.lms.entity.Course;
 import com.experion.mainProject.lms.entity.CourseCategory;
 import com.experion.mainProject.lms.entity.Module;
 import com.experion.mainProject.lms.entity.ModuleResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,13 +17,16 @@ import java.util.Set;
 
 @Service
 
-public class ModuleServicesImpl implements ModuleServices{
+public class ModuleServicesImpl implements ModuleServices {
 
-private ModuleRepository moduleRepository;
+//    private CourseCategoryRepository courseCategoryRepository;
+//
+//    public ModuleServicesImpl(CourseCategoryRepository courseCategoryRepository) {
+//        this.courseCategoryRepository = courseCategoryRepository;
+//    }
 
-    public ModuleServicesImpl(ModuleRepository moduleRepository) {
-        this.moduleRepository = moduleRepository;
-    }
+    @Autowired
+    private ModuleRepository moduleRepository;
 
     @Override
     public String addModule(AddModule addModule) {
@@ -41,42 +45,28 @@ private ModuleRepository moduleRepository;
 //        courseCategoryRepository.save(category);
 
         //retrive the module info from dto
-        Module module=addModule.getModule();
+        Module module = addModule.getModule();
+        module.setCourse(addModule.getCourse());
 
         //populate module with module resource
-       Set<ModuleResource> moduleResourceItems=addModule.getModuleResourceItem();
+        Set<ModuleResource> moduleResourceItems = addModule.getModuleResourceItem();
         moduleResourceItems.forEach(item -> module.add(item));
 
         //populate course with module
-//       Course course=addModule.getCourse();
-//       course.add(module);
+//        Course course = addModule.getCourse();
+//        course.add(module);
 //
 //        //populate category with course
-//       CourseCategory category=addModule.getCategory();
-//       category.add(course);
+//        CourseCategory category = addModule.getCategory();
+//        category.add(course);
 
         //save to database
-       moduleRepository.save(module);
+        moduleRepository.save(module);
 
 
-
-
-            return "Module added successfully!";
+        return "Course added successfully!";
 
     }
 
-//    @Override
-//    public List<Course> deleteCourse(long courseId) {
-//
-//        List<Course> list=new ArrayList<>();
-//
-//            for (Iterator<Course> iterator = list.iterator(); iterator.hasNext(); ) {
-//                Course course = iterator.next();
-//                if (course.getCourseId() == courseId) {
-//                    iterator.remove();
-//                }
-//            }
-//            return list;
-//        }
-    }
+}
 
