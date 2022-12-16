@@ -1,10 +1,8 @@
 package com.experion.mainProject.lms.service;
 
-import com.experion.mainProject.lms.dto.ChangePassword;
-import com.experion.mainProject.lms.dto.ChangePasswordResponse;
-import com.experion.mainProject.lms.dto.User;
-import com.experion.mainProject.lms.dto.UserResponse;
+import com.experion.mainProject.lms.dto.*;
 import com.experion.mainProject.lms.entity.Role;
+import com.experion.mainProject.lms.entity.UserProfile;
 
 public interface UserProfileService {
 
@@ -13,4 +11,7 @@ public interface UserProfileService {
     String updateUser(Role role, Long employeeId);
 
     ChangePasswordResponse changePassword(ChangePassword changePassword);
+
+    void updateInitialLoginStatus(ChangeStatus changeStatus, Long userId);
+
 }

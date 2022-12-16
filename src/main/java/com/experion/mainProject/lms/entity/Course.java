@@ -31,6 +31,13 @@ public class Course {
     @Column(name = "course_image_url")
     private String courseImageUrl;
 
+    @Column(name = "course_duration" )
+    private String courseDuration;
+
+
+    @Column(name = "course_rating" )
+    private Long courseRating;
+
 
     @ManyToOne
     @JsonIgnore
@@ -41,10 +48,10 @@ public class Course {
     @JsonIgnore
     private Set<Module> modules = new HashSet<>();
 
-    @OneToOne
-    @JsonIgnore
-    @PrimaryKeyJoinColumn
-    private EnrolledCourse enrolledCourse;
+//    @OneToOne
+//    @JsonIgnore
+//    @PrimaryKeyJoinColumn
+//    private EnrolledCourse enrolledCourse;
 
     //Convenience method to add each module to corresponding course
     public void add(Module module) {

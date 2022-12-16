@@ -1,0 +1,81 @@
+<------ api for upload exel ----------->
+
+
+method : POST
+
+api: http://localhost:8080/api/employee/upload
+
+
+<------------------------------------------->
+
+
+<------ api for list all employee ----------->
+method :GET 
+
+api 1: http://localhost:8080/api/employee
+api 2: http://localhost:8080/api/employee/all (diffrent format with out embeded)
+<------------------------------------------->
+
+
+
+<------ api for list all courses ----------->
+method :GET 
+
+api 1: http://localhost:8080/api/courses
+<------------------------------------------->
+
+
+
+
+<------ api for Search course ----------->
+method :GET 
+
+api 1: http://localhost:8080/api/courses/search/findAllBycourseName?name= "course name"
+<------------------------------------------->
+
+
+<------ api for Search Employee ----------->
+method :GET 
+
+api 1: http://localhost:8080/api/courses/search/findAllByemployeeFirstName?name= "employee name"
+<------------------------------------------->
+
+
+
+
+
+
+<------ api for Search Category ----------->
+method :GET 
+
+api 1: http://localhost:8080/api/course-category/search/findAllBycategoryId?id=  "categoryId"
+<------------------------------------------->
+
+
+
+
+
+<------ api for List all Category ----------->
+method :GET 
+
+api 1: http://localhost:8080/api/course-category
+<------------------------------------------->
+
+
+<------ api for List all modules ----------->
+method :GET 
+
+api 1: 
+<------------------------------------------->
+
+
+<------ api for  ----------->
+method :GET 
+
+api 1: 
+<------------------------------------------->
+
+
+
+
+
