@@ -19,7 +19,7 @@ public class Employees {
 
     @Column(name = "emp_firstname")
     private String employeeFirstName;
-    @Column(name = "emp_lasstname")
+    @Column(name = "emp_lastname")
     private String employeeLastName;
     @Column(name = "emp_email")
     private String employeeEmail;

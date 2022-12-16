@@ -91,13 +91,13 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module` (
 
 
 CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`userprofile` (
-   `user_id` BIGINT(20)  AUTO_INCREMENT NOT NULL,
+   `user_id` BIGINT(20)  AUTO_INCREMENT NOT NULL UNIQUE,
    `emp_id` BIGINT(20) NOT NULL  UNIQUE,
    `role_id` BIGINT(20) NOT NULL DEFAULT 3 ,
    `emp_name` VARCHAR(255) DEFAULT NULL,
-   `user_name` VARCHAR(255) DEFAULT NULL,
-   `user_password` VARCHAR(255) DEFAULT "experion@123",
-
+   `user_name` VARCHAR(255) DEFAULT NULL UNIQUE,
+   `user_password` VARCHAR(255) DEFAULT "$2a$10$dleGunq2amw9nmG.CKED0uHwZgDhsjL7rf3RWttolT7A4earCJI0C",
+   `initial_status` Boolean DEFAULT false,
     PRIMARY KEY (`user_id`),
    CONSTRAINT `fk_employee` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`),
    CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`)
