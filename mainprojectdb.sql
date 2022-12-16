@@ -11,18 +11,25 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`course_category` (
  ENGINE=InnoDB
  AUTO_INCREMENT = 1;
 
+
 CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`course` (
    `course_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
    `course_name` VARCHAR(255) DEFAULT NULL,
    `course_description` VARCHAR(255) DEFAULT NULL,
    `course_image_url` VARCHAR(255) DEFAULT NULL,
    `category_id` BIGINT(20) NOT NULL,
+   `course_Duration` Time DEFAULT NULL,
+   `course_rating` BIGINT(20) DEFAULT NULL,
+
+    
    PRIMARY KEY (`course_id`),
    KEY `fk_category` (`category_id`),
    CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `course_category` (`category_id`)
  )
  ENGINE=InnoDB
  AUTO_INCREMENT = 1;
+
+
 
 CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`role` (
    `role_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -32,8 +39,12 @@ ENGINE=InnoDB
 AUTO_INCREMENT = 1;
 
 
-CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`userprofile` (`user_id` BIGINT(20) NOT NULL AUTO_INCREMENT,`user_firstname` VARCHAR(255) DEFAULT NULL,
-`user_lastname` VARCHAR(255) DEFAULT NULL,`role_id` BIGINT(20) NOT NULL,PRIMARY KEY (`user_id`),
+
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`userprofile` (
+`user_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+`user_firstname` VARCHAR(255) DEFAULT NULL,
+`user_lastname` VARCHAR(255) DEFAULT NULL,`
+role_id` BIGINT(20) NOT NULL,PRIMARY KEY (`user_id`),
 KEY `fk_role` (`role_id`),
 CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`))
 ENGINE=InnoDB
@@ -45,7 +56,7 @@ AUTO_INCREMENT = 1;
 INSERT INTO course_category VALUES(1,"SOFT SKILL"),(2,"UI/UX"),(3,"CORE LANGUAGES");
 
 INSERT INTO course VALUES(100,"COMMUNICATION","TIPS FOR EFFECTIVE COMMUNICATION ","https://5.imimg.com/data5/NX/VJ/MY-65545223/diploma-courses-communications-skills-500x500.png","1"),
-(101,"EMAIL-ETIQUETTE","COME LETS COMMUNICATE THROUGH EMAIL ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34o_-GsEl1s2XBwvFbVBLlC9pERqEwpublA&usqp=CAU","1"),
+(102,"EMAIL-ETIQUETTE","COME LETS COMMUNICATE THROUGH EMAIL ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34o_-GsEl1s2XBwvFbVBLlC9pERqEwpublA&usqp=CAU","1"),
 (103,"HTML & CSS","BASICS OF WEB DESIGNING ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSL7OBtKiuFepjHYPjerjXPpDCETYHyx-K4g&usqp=CAU","2"),
 (104,"CORE JAVA","CORE JAVA FOR BEGINNERS","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY_jXc_zdH7jotROmPmhrI0ZFT5C0rfp-F9g&usqp=CAU","3");
 
@@ -53,26 +64,14 @@ INSERT INTO course VALUES(100,"COMMUNICATION","TIPS FOR EFFECTIVE COMMUNICATION 
 INSERT INTO role VALUES(1,"Admin"),(2,"learningAdmin"),(3,"endUser");
 
 
-
-
-
-
-
-
-
-
-
 CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`employees` (
    `emp_id` BIGINT(20) NOT NULL AUTO_INCREMENT UNIQUE,
    `emp_firstname` VARCHAR(55) NULL DEFAULT NULL,
    `emp_lastname` VARCHAR(55) NULL DEFAULT NULL,
-   `emp_email` VARCHAR(255) NULL DEFAULT NULL,
+   `emp_email` VARCHAR(255) UNIQUE DEFAULT NULL,
    PRIMARY KEY (`emp_id`))
-ENGINE=InnoDB;
-
-
-
-
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
 
 
 
@@ -90,17 +89,9 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module` (
 
 
 
-/*
--- Query: SELECT * FROM lmsdatabase.module
-LIMIT 0, 1000
-
--- Date: 2022-11-25 19:00
-*/
-
-
 
 CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`userprofile` (
-   `user_id` BIGINT(20) NOT NULL,
+   `user_id` BIGINT(20)  AUTO_INCREMENT NOT NULL,
    `emp_id` BIGINT(20) NOT NULL  UNIQUE,
    `role_id` BIGINT(20) NOT NULL DEFAULT 3 ,
    `emp_name` VARCHAR(255) DEFAULT NULL,
@@ -115,17 +106,21 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`userprofile` (
  AUTO_INCREMENT = 1;
 
 
+
+
 DROP TRIGGER IF EXISTS `lmsdatabase`.`employees_AFTER_INSERT`;
 
   DELIMITER $$
-  USE `lmsdatabase`$$
+
   CREATE DEFINER=`root`@`localhost` TRIGGER `employees_AFTER_INSERT` AFTER INSERT ON `employees` FOR EACH ROW
   BEGIN
   insert ignore into userprofile(emp_id,emp_name,user_name)
   select new.emp_id,new.emp_firstname,new.emp_email from employees;
-  END
+  END$$
 
   DELIMITER ;
+
+
 
 CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module_resource` (
    `module_resource_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -133,34 +128,34 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module_resource` (
    `module_resource_name` VARCHAR(255) DEFAULT NULL,
    `module_resource_type` VARCHAR(255) DEFAULT NULL,
    `module_resource_url` VARCHAR(255) DEFAULT NULL,
+   `module_resource_duration` TIME DEFAULT NULL,
     PRIMARY KEY (`module_resource_id`),
    CONSTRAINT `fk_module` FOREIGN KEY (`module_id`) REFERENCES `module` (`module_id`) on update cascade on delete cascade
- )
- ENGINE=InnoDB
--- AUTO_INCREMENT = 1;
-
-
-CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`course_tracker` (
-   `course_id` BIGINT(20) NOT NULL,
-   `emp_id` BIGINT(20) NOT NULL,
-   `status` ENUM('ASSIGNED','STARTED','COMPLETED') DEFAULT 'ASSIGNED',
-    `course_name` varchar(255) DEFAULT NULL,
-   `assigned_date` DATE DEFAULT NULL,
-   `completed_date` DATE DEFAULT NULL,
-   PRIMARY KEY (`course_id`,`emp_id`),
-   CONSTRAINT `fk_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`),
-   CONSTRAINT `fk_courses` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`)
  )
  ENGINE=InnoDB
  AUTO_INCREMENT = 1;
 
 
-insert into course_tracker values(100,1004,"started","Communication","2022-11-23","2022-11-20");
-
- insert into employees values(1001,"jithin","raj","jithin.r@experionglobal.com"),(1002,"robin","cheriyan mathew","robin.cm@experionglobal.com"),(1003,"vaishnav","l","vaishnav.l@experionglobal.com"),(1004,"rithika","jr","rithika.jr@experionglobal.com"),(1005,"drishya","t","drishya.t@experionglobal.com");
+ insert into employees values
+   (1001,"jithin","raj","jithin.r@experionglobal.com"),
+   (1002,"robin","cheriyan mathew","robin.cm@experionglobal.com"),
+   (1003,"vaishnav","l","vaishnav.l@experionglobal.com"),
+   (1004,"rithika","jr","rithika.jr@experionglobal.com"),
+   (1005,"drishya","t","drishya.t@experionglobal.com");
  
 
 
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`enrolled_course` (
+   `enrolled_course_id` BIGINT(20) AUTO_INCREMENT NOT NULL,
+   `course_id` BIGINT(20) NOT NULL,
+   `emp_id` BIGINT(20) NOT NULL,
+   `enrolled_date` DATE DEFAULT NULL,
+   PRIMARY KEY (`enrolled_course_id`),
+   CONSTRAINT `fk_courses` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
+   CONSTRAINT `fk_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
+   )
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
 
 
 

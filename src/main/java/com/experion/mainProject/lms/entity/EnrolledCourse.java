@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Entity
 @Table(name="enrolled_course")
@@ -16,6 +16,7 @@ public class EnrolledCourse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "enrolled_course_id")
     private  Long enrolledCourseId;
+
     @Column(name = "enrolled_date")
     private Date enrolledDate;
 
@@ -28,6 +29,12 @@ public class EnrolledCourse {
     @JsonIgnore
     @JoinColumn(name="course_id",referencedColumnName = "course_id")
     private Course course;
+
+
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "enrolledTrackerCourse")
+    @JsonIgnore
+    private List<CourseTracker> courseTrackers =new ArrayList<>();
+
 
 
 }

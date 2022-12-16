@@ -26,9 +26,9 @@ private String updateUser(@RequestBody Role role, @PathVariable("employeeId") Lo
     return  userProfileService.updateUser(role,employeeId);
 }
 
-//@PostMapping("*/user/change-password")
-//    private String changePassword(@RequestBody ChangePassword changePassword){
-//    return userProfileService.changePassword(changePassword);
-//}
+@PostMapping("*/user/change-password")
+    private String changePassword(@RequestBody ChangePassword changePassword){
+    return userProfileService.changePassword(changePassword);
+}
 
 }

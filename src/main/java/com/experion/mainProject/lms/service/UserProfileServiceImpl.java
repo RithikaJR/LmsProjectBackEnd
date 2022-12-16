@@ -24,7 +24,7 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     @Override
     public UserResponse userLogin(User user) {
-//        BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
+       BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
     Long roleId=null;
    String employeeName="";
    Long employeeId=null;

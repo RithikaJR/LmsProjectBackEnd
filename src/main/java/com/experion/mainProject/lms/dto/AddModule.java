@@ -11,13 +11,7 @@ import java.util.Set;
 @Data
 public class AddModule {
 
-//    private CourseCategory category;
-//    private Course course;
-//    private Set<Module> moduleItem;
-
-    private CourseCategory category;
-    private Course course;
-   private Module module;
+    private Module module;
     private Set<ModuleResource> moduleResourceItem;
 
 }

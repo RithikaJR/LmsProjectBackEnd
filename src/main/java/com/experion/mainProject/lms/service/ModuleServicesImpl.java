@@ -1,6 +1,7 @@
 package com.experion.mainProject.lms.service;
 
 import com.experion.mainProject.lms.dao.CourseCategoryRepository;
+import com.experion.mainProject.lms.dao.ModuleRepository;
 import com.experion.mainProject.lms.dto.AddModule;
 import com.experion.mainProject.lms.entity.Course;
 import com.experion.mainProject.lms.entity.CourseCategory;
@@ -17,10 +18,10 @@ import java.util.Set;
 
 public class ModuleServicesImpl implements ModuleServices{
 
-private CourseCategoryRepository courseCategoryRepository;
+private ModuleRepository moduleRepository;
 
-    public ModuleServicesImpl(CourseCategoryRepository courseCategoryRepository) {
-        this.courseCategoryRepository = courseCategoryRepository;
+    public ModuleServicesImpl(ModuleRepository moduleRepository) {
+        this.moduleRepository = moduleRepository;
     }
 
     @Override
@@ -47,20 +48,20 @@ private CourseCategoryRepository courseCategoryRepository;
         moduleResourceItems.forEach(item -> module.add(item));
 
         //populate course with module
-       Course course=addModule.getCourse();
-       course.add(module);
-
-        //populate category with course
-       CourseCategory category=addModule.getCategory();
-       category.add(course);
+//       Course course=addModule.getCourse();
+//       course.add(module);
+//
+//        //populate category with course
+//       CourseCategory category=addModule.getCategory();
+//       category.add(course);
 
         //save to database
-       courseCategoryRepository.save(category);
+       moduleRepository.save(module);
 
 
 
 
-            return "Course added successfully!";
+            return "Module added successfully!";
 
     }
 
