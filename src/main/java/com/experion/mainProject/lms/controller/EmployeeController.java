@@ -6,6 +6,7 @@ import com.experion.mainProject.lms.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ public class EmployeeController
     private EmployeeService employeeService;
 
     @PostMapping("*/employee/upload")
+    @PreAuthorize("hasRole('Super Admin')")
     public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) {
         if (Helper.checkExcelFormat(file)) {
             //true
@@ -36,6 +38,7 @@ public class EmployeeController
 
 
     @GetMapping("*/employee/all")
+    @PreAuthorize("hasRole('Super Admin')")
     public List<Employees> getAllEmployee() {
         return this.employeeService.getAllEmployee();
     }
