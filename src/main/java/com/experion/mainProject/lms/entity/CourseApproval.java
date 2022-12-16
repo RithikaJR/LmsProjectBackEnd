@@ -25,6 +25,9 @@ public class CourseApproval {
     @Column(name = "emp_name",updatable = false)
     private String employeeName;
 
+    @Column(name = "course_id",updatable = false)
+    private Long courseId;
+
     @Column(name = "course_name",updatable = false)
     private String courseName;
 

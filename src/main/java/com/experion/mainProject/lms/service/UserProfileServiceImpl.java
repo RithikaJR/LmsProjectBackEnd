@@ -8,6 +8,7 @@ import com.experion.mainProject.lms.dto.UserResponse;
 import com.experion.mainProject.lms.entity.Role;
 import com.experion.mainProject.lms.entity.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-
 public class UserProfileServiceImpl implements UserProfileService {
     @Autowired
     UserProfileRepository userProfileRepository;
+
+
 
 
     @Override
