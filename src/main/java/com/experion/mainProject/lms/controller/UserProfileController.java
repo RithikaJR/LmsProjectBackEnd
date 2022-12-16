@@ -7,6 +7,7 @@ import com.experion.mainProject.lms.dto.UserResponse;
 import com.experion.mainProject.lms.entity.Role;
 import com.experion.mainProject.lms.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,6 +24,7 @@ public class UserProfileController {
         return userResponse;
     }
 @PutMapping("*/userupdate/{employeeId}")
+@PreAuthorize("hasRole('Super Admin')")
 private String updateUser(@RequestBody Role role, @PathVariable("employeeId") Long employeeId){
     return  userProfileService.updateUser(role,employeeId);
 }

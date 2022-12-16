@@ -5,6 +5,7 @@ import com.experion.mainProject.lms.dto.EnrollCourseResponse;
 import com.experion.mainProject.lms.entity.EnrolledCourse;
 import com.experion.mainProject.lms.service.EnrolledCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class EnrolledCourseControlller {
     @Autowired
     EnrolledCourseService enrolledCourseService;
     @PostMapping("*/enroll-course")
+    @PreAuthorize("hasRole('User')")
     private String courseEnroll(@RequestBody EnrollCourse enrollCourse){
         System.out.println(enrollCourse);
         return enrolledCourseService.enrollCourse(enrollCourse);

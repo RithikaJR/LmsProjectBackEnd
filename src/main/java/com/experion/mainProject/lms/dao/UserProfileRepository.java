@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @DynamicUpdate
 public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
 
-
+UserProfile findByuserName(String userName);
 }
