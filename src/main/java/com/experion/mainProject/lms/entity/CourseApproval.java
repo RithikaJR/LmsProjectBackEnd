@@ -28,6 +28,10 @@ public class CourseApproval {
     @Column(name = "course_name",updatable = false)
     private String courseName;
 
+    @Column(name = "course_id",updatable = false)
+    private Long courseId;
+
+
     @Column(name = "approval_status")
     private String approvalStatus="pending";
 
