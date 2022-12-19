@@ -1,0 +1,16 @@
+package com.experion.mainProject.lms.dto;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
+@NoArgsConstructor
+public class ForgetPassword {
+
+    private String employeeEmail;
+
+
+
+}

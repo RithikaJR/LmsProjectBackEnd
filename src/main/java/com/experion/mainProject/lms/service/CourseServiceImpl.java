@@ -1,14 +1,13 @@
 package com.experion.mainProject.lms.service;
 
 import com.experion.mainProject.lms.dao.CourseRepository;
+import com.experion.mainProject.lms.dao.EnrolledCourseRepository;
 import com.experion.mainProject.lms.dao.ModuleRepository;
 import com.experion.mainProject.lms.dto.AddCourse;
 import com.experion.mainProject.lms.dto.AddModule;
 import com.experion.mainProject.lms.dto.RejectMailRequest;
-import com.experion.mainProject.lms.entity.Course;
-import com.experion.mainProject.lms.entity.CourseCategory;
+import com.experion.mainProject.lms.entity.*;
 import com.experion.mainProject.lms.entity.Module;
-import com.experion.mainProject.lms.entity.ModuleResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -18,6 +17,9 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -25,6 +27,9 @@ public class CourseServiceImpl implements CourseServices
 {
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private EnrolledCourseRepository enrolledCourseRepository;
 
     @Autowired
     private ModuleRepository moduleRepository;
@@ -80,5 +85,21 @@ public class CourseServiceImpl implements CourseServices
         mailSender.send(message);
 
 
+    }
+
+    @Override
+    public List<Course> getEnrolledCourse(Long employeeId) {
+
+        List<EnrolledCourse> enrolledCourses=enrolledCourseRepository.findAll();
+        List<Course> coursesEnrolled=new ArrayList<>();
+
+        for(EnrolledCourse enrolledCourse:enrolledCourses)
+        {
+            if(Objects.equals(enrolledCourse.getEmployee().getEmployeeId(), employeeId)){
+                coursesEnrolled.add(enrolledCourse.getCourse());
+
+            }
+        }
+        return coursesEnrolled;
     }
 }
