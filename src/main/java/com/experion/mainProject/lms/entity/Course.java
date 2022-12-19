@@ -6,39 +6,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "course")
 @Data
-public class Course  {
+@NoArgsConstructor
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "course_id")
+    @Column(name = "course_id",updatable = false)
     private Long courseId;
 
 
-    @Column(name = "course_name")
+    @Column(name = "course_name",updatable = false)
     private String courseName;
 
 
-    @Column(name = "course_description")
+    @Column(name = "course_description",updatable = false)
     private String courseDescription;
 
 
-    @Column(name = "course_image_url")
+    @Column(name = "course_image_url",updatable = false)
     private String courseImageUrl;
 
-//    @Column(name = "course_duration" )
-//    private String courseDuration;
-//
-//
-//    @Column(name = "course_rating" )
-//    private Long courseRating;
+    @Column(name = "course_duration",updatable = false )
+    private String courseDuration;
+
+
+    @Column(name = "course_rating" )
+    private Long courseRating;
 
 
     @ManyToOne
@@ -49,17 +47,6 @@ public class Course  {
     @OneToMany(cascade = CascadeType.MERGE, mappedBy = "course")
     @JsonIgnore
     private Set<Module> modules = new HashSet<>();
-
-//    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "course")
-//    @JsonIgnore
-//    private List<CourseApproval> approvals = new ArrayList<>();
-
-//    @OneToOne
-//    @JoinColumns({@JoinColumn(name = "course_id",referencedColumnName = "course_id",insertable = false,updatable = false)
-//      //     @JoinColumn(name = "emp_id",referencedColumnName = "emp_id",insertable = false,updatable = false),
-////            @JoinColumn(name="course_approval_id",insertable = false,updatable = false)
-//    })
-//    private CourseApproval courseApproval;
 
 //    @OneToOne
 //    @JsonIgnore
