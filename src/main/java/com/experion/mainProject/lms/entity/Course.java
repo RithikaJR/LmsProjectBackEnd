@@ -48,10 +48,10 @@ public class Course {
     @JsonIgnore
     private Set<Module> modules = new HashSet<>();
 
-//    @OneToOne
-//    @JsonIgnore
-//    @PrimaryKeyJoinColumn
-//    private EnrolledCourse enrolledCourse;
+    @OneToOne
+    @JsonIgnore
+    @PrimaryKeyJoinColumn
+    private EnrolledCourse enrolledCourse;
 
     //Convenience method to add each module to corresponding course
     public void add(Module module) {

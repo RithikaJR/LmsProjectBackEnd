@@ -17,11 +17,16 @@ public class EnrolledCourse {
     @Column(name = "enrolled_course_id")
     private Long enrolledCourseId;
 
-    @Column(name = "emp_id")
-    private Long employeeId;
 
-    @Column(name = "course_id")
-    private Long courseId;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "emp_id", nullable = false)
+    private Employees employee;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
+    private Course course;
 
     @Column(name = "status")
     private String enrollStatus="enrolled";
