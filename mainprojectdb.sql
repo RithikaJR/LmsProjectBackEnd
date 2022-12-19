@@ -39,29 +39,15 @@ ENGINE=InnoDB
 AUTO_INCREMENT = 1;
 
 
-
-CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`userprofile` (
-`user_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-`user_firstname` VARCHAR(255) DEFAULT NULL,
-`user_lastname` VARCHAR(255) DEFAULT NULL,`
-role_id` BIGINT(20) NOT NULL,PRIMARY KEY (`user_id`),
-KEY `fk_role` (`role_id`),
-CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`))
-ENGINE=InnoDB
-AUTO_INCREMENT = 1;
-
-
-
-
 INSERT INTO course_category VALUES(1,"SOFT SKILL"),(2,"UI/UX"),(3,"CORE LANGUAGES");
 
-INSERT INTO course VALUES(100,"COMMUNICATION","TIPS FOR EFFECTIVE COMMUNICATION ","https://5.imimg.com/data5/NX/VJ/MY-65545223/diploma-courses-communications-skills-500x500.png","1"),
-(102,"EMAIL-ETIQUETTE","COME LETS COMMUNICATE THROUGH EMAIL ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34o_-GsEl1s2XBwvFbVBLlC9pERqEwpublA&usqp=CAU","1"),
-(103,"HTML & CSS","BASICS OF WEB DESIGNING ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSL7OBtKiuFepjHYPjerjXPpDCETYHyx-K4g&usqp=CAU","2"),
-(104,"CORE JAVA","CORE JAVA FOR BEGINNERS","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY_jXc_zdH7jotROmPmhrI0ZFT5C0rfp-F9g&usqp=CAU","3");
+INSERT INTO course VALUES(100,"COMMUNICATION","TIPS FOR EFFECTIVE COMMUNICATION ","https://5.imimg.com/data5/NX/VJ/MY-65545223/diploma-courses-communications-skills-500x500.png","1","000500",0),
+(102,"EMAIL-ETIQUETTE","COME LETS COMMUNICATE THROUGH EMAIL ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34o_-GsEl1s2XBwvFbVBLlC9pERqEwpublA&usqp=CAU","1","001000",5),
+(103,"HTML & CSS","BASICS OF WEB DESIGNING ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSL7OBtKiuFepjHYPjerjXPpDCETYHyx-K4g&usqp=CAU","2","001000",0),
+(104,"CORE JAVA","CORE JAVA FOR BEGINNERS","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY_jXc_zdH7jotROmPmhrI0ZFT5C0rfp-F9g&usqp=CAU","3","000700",9);
 
 
-INSERT INTO role VALUES(1,"Admin"),(2,"learningAdmin"),(3,"endUser");
+INSERT INTO role VALUES(1,"Super Admin"),(2,"Learning Admin"),(3,"User");
 
 
 CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`employees` (
@@ -82,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module` (
    `module_image_url` VARCHAR(255) DEFAULT NULL,
    `module_url` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (`module_id`),
-   CONSTRAINT `fk_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`)
+   CONSTRAINT `fk_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`)on update cascade on delete cascade
  )
  ENGINE=InnoDB
  AUTO_INCREMENT = 1;
@@ -99,12 +85,11 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`userprofile` (
    `user_password` VARCHAR(255) DEFAULT "$2a$10$dleGunq2amw9nmG.CKED0uHwZgDhsjL7rf3RWttolT7A4earCJI0C",
    `initial_status` Boolean DEFAULT false,
     PRIMARY KEY (`user_id`),
-   CONSTRAINT `fk_employee` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`),
+   CONSTRAINT `fk_employee` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) on update cascade on delete cascade,
    CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`)
  )
  ENGINE=InnoDB
  AUTO_INCREMENT = 1;
-
 
 
 
@@ -142,20 +127,45 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`module_resource` (
    (1003,"vaishnav","l","vaishnav.l@experionglobal.com"),
    (1004,"rithika","jr","rithika.jr@experionglobal.com"),
    (1005,"drishya","t","drishya.t@experionglobal.com");
- 
 
 
-CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`enrolled_course` (
-   `enrolled_course_id` BIGINT(20) AUTO_INCREMENT NOT NULL,
-   `course_id` BIGINT(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`course_approval` (
+   `course_approval_id` BIGINT(20) AUTO_INCREMENT NOT NULL,
    `emp_id` BIGINT(20) NOT NULL,
-   `enrolled_date` DATE DEFAULT NULL,
-   PRIMARY KEY (`enrolled_course_id`),
-   CONSTRAINT `fk_courses` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
-   CONSTRAINT `fk_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
-   )
+   `emp_name` varchar(255) NOT NULL,
+   `course_id` BIGINT(20) NOT NULL,
+   `course_name`varchar(255) NOT NULL,
+   `approval_status`varchar(255) default 'pending',
+ PRIMARY KEY (`course_approval_id`)
+  )
 ENGINE=InnoDB
 AUTO_INCREMENT = 1;
+
+
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`session` (
+   `session_id` BIGINT(20) AUTO_INCREMENT NOT NULL,
+   `session_name` varchar(255) NOT NULL,
+   `session_description` varchar(255)  NULL,
+   `trainer_name` varchar(255) NOT NULL,
+   `session_start_time` Time NOT NULL,
+   `session_end_time` Time NOT Null,
+   `session_date` Date NOT NULL,
+   `session_cost` Decimal NOT NULL,
+ PRIMARY KEY (`session_id`)
+  )
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
+
+
+
+
+
+
+
+    
+
+
+
 
 
 

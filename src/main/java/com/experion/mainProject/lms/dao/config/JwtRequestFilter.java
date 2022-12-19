@@ -1,6 +1,11 @@
 package com.experion.mainProject.lms.dao.config;
 
+
+import com.experion.mainProject.lms.dao.UserProfileRepository;
+import com.experion.mainProject.lms.dto.ChangePassword;
+import com.experion.mainProject.lms.dto.ChangePasswordResponse;
 import com.experion.mainProject.lms.service.JwtService;
+import com.experion.mainProject.lms.service.UserProfileService;
 import com.experion.mainProject.lms.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -24,6 +31,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtService jwtService;
+
+
+@Autowired
+UserProfileService userProfileService;
+
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -60,4 +73,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
 
     }
+
 }

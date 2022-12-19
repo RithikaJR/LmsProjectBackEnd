@@ -16,22 +16,22 @@ import java.util.Set;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "course_id")
+    @Column(name = "course_id",updatable = false)
     private Long courseId;
 
 
-    @Column(name = "course_name")
+    @Column(name = "course_name",updatable = false)
     private String courseName;
 
 
-    @Column(name = "course_description")
+    @Column(name = "course_description",updatable = false)
     private String courseDescription;
 
 
-    @Column(name = "course_image_url")
+    @Column(name = "course_image_url",updatable = false)
     private String courseImageUrl;
 
-    @Column(name = "course_duration" )
+    @Column(name = "course_duration",updatable = false )
     private String courseDuration;
 
 

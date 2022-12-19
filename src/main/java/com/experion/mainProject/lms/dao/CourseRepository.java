@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "*")
 @PreAuthorize("hasRole('Super Admin') or hasRole('User')")
 public interface CourseRepository extends JpaRepository<Course, Long> {
-    Page<Course> findAllBycourseName(@Param("name") String courseName, Pageable pageable);
+    Page<Course> findBycourseNameContaining(@Param("name") String courseName, Pageable pageable);
 }

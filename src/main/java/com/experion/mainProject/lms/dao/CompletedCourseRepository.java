@@ -1,8 +1,7 @@
 package com.experion.mainProject.lms.dao;
 
-
+import com.experion.mainProject.lms.entity.CompletedCourse;
 import com.experion.mainProject.lms.entity.Employees;
-import com.experion.mainProject.lms.entity.Module;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,11 +9,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@RepositoryRestResource(collectionResourceRel = "module", path="modules")
-@CrossOrigin(origins="*")
 
-public interface ModuleRepository extends JpaRepository<Module, Long>
+@CrossOrigin(origins = "*")
+@RepositoryRestResource(collectionResourceRel = "completedCourse", path = "completed-course")
+public interface CompletedCourseRepository extends JpaRepository<CompletedCourse,Long>
 {
-
-
+    Page<CompletedCourse> findByenrolledCourseId(@Param("id") Long enrolledCourseId, Pageable pageable);
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 
 @CrossOrigin(origins = "*")
@@ -49,5 +50,7 @@ public class JwtController {
     private ChangePasswordResponse changePassword(@RequestBody ChangePassword changePassword){
         return userProfileService.changePassword(changePassword);
     }
+
+
 
 }

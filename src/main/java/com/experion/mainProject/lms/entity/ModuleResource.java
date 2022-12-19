@@ -35,10 +35,10 @@ public class ModuleResource {
     @JoinColumn(name = "module_id", nullable = false)
     private Module module;
 
-    @OneToOne
-    @JsonIgnore
-    @PrimaryKeyJoinColumn
-    private CourseTracker courseTracker;
+//    @OneToOne
+//    @JsonIgnore
+//    @PrimaryKeyJoinColumn
+//    private CourseTracker courseTracker;
 
 
 

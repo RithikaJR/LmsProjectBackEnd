@@ -25,7 +25,9 @@ public class JwtService implements UserDetailsService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @Autowired
+
+
+   @Autowired
     private UserProfileRepository userDao;
 
     @Autowired
