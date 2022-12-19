@@ -129,7 +129,7 @@ public class UserProfileServiceImpl implements UserProfileService {
             BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
             String encryptedPassword = bcrypt.encode("experion@123");
             userProfile.setPassword(encryptedPassword);
-            String response = sendMail(forgetPassword.getEmployeeEmail());
+            String response = sendMail(forgetPassword.getEmployeeEmail(),userProfile.getEmployeeName());
             userProfile.setInitialStatus(false);
             userProfileRepository.save(userProfile);
             return response;
@@ -141,13 +141,13 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     }
 
-    private String sendMail(String toEmail) throws MessagingException {
+    private String sendMail(String toEmail,String employeeName) throws MessagingException {
 
         MimeMessage message = mailSender.createMimeMessage();
 
         MimeMessageHelper messageHelper = new MimeMessageHelper(message, StandardCharsets.UTF_8.toString());
         messageHelper.setSubject("L&D Team:Password reset");
-        messageHelper.setText("Please use the following password to login\nPassword:'experion@123'\n" +
+        messageHelper.setText("Hi "+employeeName+",\nPlease use the following password to login\nPassword:'experion@123'\n" +
                 "Please ensure to change the password after logging in.\nThanks&Regards,\nL&D Team");
         messageHelper.setFrom("lmslearningapp@gmail.com");
         messageHelper.setTo(toEmail);
