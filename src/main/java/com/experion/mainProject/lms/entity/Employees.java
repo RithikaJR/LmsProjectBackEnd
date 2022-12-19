@@ -2,8 +2,10 @@ package com.experion.mainProject.lms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.security.access.method.P;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "employees")
 @DynamicUpdate
-public class Employees {
+public class Employees  {
     @Id
     @Column(name = "emp_id")
     private Long employeeId;
@@ -25,12 +27,17 @@ public class Employees {
     private String employeeEmail;
 
     @OneToOne
+    @JsonIgnore
     @PrimaryKeyJoinColumn
     private UserProfile userProfile;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employees")
-    @JsonIgnore
-    private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "employees")
+//    @JsonIgnore
+//    private List<CourseApproval> approvals = new ArrayList<>();
+
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employees")
+//    @JsonIgnore
+//    private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
 
     public Employees(Long employeeId, String employeeFirstName, String employeeLastName, String employeeEmail) {
         this.employeeId = employeeId;

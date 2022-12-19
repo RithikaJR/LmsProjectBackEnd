@@ -6,14 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "course")
 @Data
-@NoArgsConstructor
-public class Course {
+public class Course  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")
@@ -31,12 +33,12 @@ public class Course {
     @Column(name = "course_image_url")
     private String courseImageUrl;
 
-    @Column(name = "course_duration" )
-    private String courseDuration;
-
-
-    @Column(name = "course_rating" )
-    private Long courseRating;
+//    @Column(name = "course_duration" )
+//    private String courseDuration;
+//
+//
+//    @Column(name = "course_rating" )
+//    private Long courseRating;
 
 
     @ManyToOne
@@ -47,6 +49,17 @@ public class Course {
     @OneToMany(cascade = CascadeType.MERGE, mappedBy = "course")
     @JsonIgnore
     private Set<Module> modules = new HashSet<>();
+
+//    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "course")
+//    @JsonIgnore
+//    private List<CourseApproval> approvals = new ArrayList<>();
+
+//    @OneToOne
+//    @JoinColumns({@JoinColumn(name = "course_id",referencedColumnName = "course_id",insertable = false,updatable = false)
+//      //     @JoinColumn(name = "emp_id",referencedColumnName = "emp_id",insertable = false,updatable = false),
+////            @JoinColumn(name="course_approval_id",insertable = false,updatable = false)
+//    })
+//    private CourseApproval courseApproval;
 
 //    @OneToOne
 //    @JsonIgnore
