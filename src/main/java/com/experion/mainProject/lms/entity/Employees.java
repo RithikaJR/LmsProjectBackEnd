@@ -28,9 +28,9 @@ public class Employees {
     @PrimaryKeyJoinColumn
     private UserProfile userProfile;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employees")
-    @JsonIgnore
-    private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employees")
+//    @JsonIgnore
+//    private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
 
     public Employees(Long employeeId, String employeeFirstName, String employeeLastName, String employeeEmail) {
         this.employeeId = employeeId;
