@@ -28,6 +28,7 @@ public class CourseController
 //    }
 
     @PostMapping("*/course/add-course")
+    @PreAuthorize("hasRole('Super Admin')")
     public String callAddCourse(@RequestBody AddCourse addCourse) {
         String  response=addCourseServices.addCourse(addCourse);
         return response;
@@ -43,12 +44,14 @@ public class CourseController
     }
 
     @PostMapping("*/course/reject-mail-notify")
+    @PreAuthorize("hasRole('Super Admin')")
     public void courseRejectMail(@RequestBody RejectMailRequest rejectMailRequest) throws MessagingException {
         addCourseServices.sendRejectMail(rejectMailRequest);
     }
 
 
     @PostMapping("*/course/enroll-course")
+    @PreAuthorize("hasRole('User')")
     public void enrollCourse(@RequestBody AddEnrolledCourse addEnrolledCourse) {
         addCourseServices.enrollCourse(addEnrolledCourse);
 
@@ -58,6 +61,7 @@ public class CourseController
 
 
     @GetMapping("*/course/get-enrolled-course/{employeeId}")
+    @PreAuthorize("hasRole('Super Admin') or hasRole('User')")
     public List<Course> enrolledCourse(@PathVariable Long employeeId){
         return addCourseServices.getEnrolledCourse(employeeId);
     }

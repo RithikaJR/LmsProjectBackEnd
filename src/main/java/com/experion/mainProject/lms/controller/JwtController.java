@@ -28,7 +28,7 @@ public class JwtController {
 
 
     @PutMapping("*/userupdate/{employeeId}")
-//    @PreAuthorize("hasRole('Super Admin')")
+    @PreAuthorize("hasRole('Super Admin')")
     private String updateUser(@RequestBody Role role, @PathVariable("employeeId") Long employeeId){
         return  userProfileService.updateUser(role,employeeId);
     }
@@ -47,6 +47,7 @@ public class JwtController {
     }
 
     @PostMapping("*/user/change-password")
+    @PreAuthorize("hasRole('Super Admin') or hasRole('User')")
     private ChangePasswordResponse changePassword(@RequestBody ChangePassword changePassword){
         return userProfileService.changePassword(changePassword);
     }
