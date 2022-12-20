@@ -23,7 +23,7 @@ public class EnrolledCourse {
     @JoinColumn(name = "emp_id", nullable = false)
     private Employees employee;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JsonIgnore
     @JoinColumn(name = "course_id", referencedColumnName = "course_id")
     private Course course;

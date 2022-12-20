@@ -4,6 +4,7 @@ import com.experion.mainProject.lms.dao.CourseRepository;
 import com.experion.mainProject.lms.dao.EnrolledCourseRepository;
 import com.experion.mainProject.lms.dao.ModuleRepository;
 import com.experion.mainProject.lms.dto.AddCourse;
+import com.experion.mainProject.lms.dto.AddEnrolledCourse;
 import com.experion.mainProject.lms.dto.AddModule;
 import com.experion.mainProject.lms.dto.RejectMailRequest;
 import com.experion.mainProject.lms.entity.*;
@@ -86,6 +87,16 @@ public class CourseServiceImpl implements CourseServices
 
 
     }
+
+    @Override
+    public void enrollCourse(AddEnrolledCourse addEnrolledCourse) {
+        EnrolledCourse enrolledCourse=new EnrolledCourse();
+        enrolledCourse.setEnrolledDate(addEnrolledCourse.getEnrolledDate());
+        enrolledCourse.setEmployee(addEnrolledCourse.getEmployeeId());
+        enrolledCourse.setCourse(addEnrolledCourse.getCourseId());
+        enrolledCourseRepository.save(enrolledCourse);
+    }
+
 
     @Override
     public List<Course> getEnrolledCourse(Long employeeId) {

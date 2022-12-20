@@ -1,6 +1,7 @@
 package com.experion.mainProject.lms.controller;
 
 import com.experion.mainProject.lms.dto.AddCourse;
+import com.experion.mainProject.lms.dto.AddEnrolledCourse;
 import com.experion.mainProject.lms.dto.AddModule;
 import com.experion.mainProject.lms.dto.RejectMailRequest;
 import com.experion.mainProject.lms.entity.Course;
@@ -45,6 +46,16 @@ public class CourseController
     public void courseRejectMail(@RequestBody RejectMailRequest rejectMailRequest) throws MessagingException {
         addCourseServices.sendRejectMail(rejectMailRequest);
     }
+
+
+    @PostMapping("*/course/enroll-course")
+    public void enrollCourse(@RequestBody AddEnrolledCourse addEnrolledCourse) {
+        addCourseServices.enrollCourse(addEnrolledCourse);
+
+
+    }
+
+
 
     @GetMapping("*/course/get-enrolled-course/{employeeId}")
     public List<Course> enrolledCourse(@PathVariable Long employeeId){

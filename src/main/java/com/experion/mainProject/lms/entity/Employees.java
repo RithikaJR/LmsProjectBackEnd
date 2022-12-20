@@ -28,7 +28,7 @@ public class Employees {
     @PrimaryKeyJoinColumn
     private UserProfile userProfile;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "employee")
     @JsonIgnore
     private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
 
