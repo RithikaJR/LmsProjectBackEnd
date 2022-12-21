@@ -17,15 +17,10 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-//@RequestMapping("/api/add-course")
 public class CourseController
 {
     @Autowired
     private CourseServices addCourseServices;
-
-//    public CourseController(CourseServices addCourseServices) {
-//        this.addCourseServices = addCourseServices;
-//    }
 
     @PostMapping("*/course/add-course")
     @PreAuthorize("hasRole('Super Admin')")
@@ -55,10 +50,7 @@ public class CourseController
     public void enrollCourse(@RequestBody AddEnrolledCourse addEnrolledCourse) {
         addCourseServices.enrollCourse(addEnrolledCourse);
 
-
     }
-
-
 
     @GetMapping("*/course/get-enrolled-course/{employeeId}")
     @PreAuthorize("hasRole('Super Admin') or hasRole('User')")

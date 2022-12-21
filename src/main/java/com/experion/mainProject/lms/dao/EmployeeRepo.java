@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "*")
 @RepositoryRestResource(collectionResourceRel = "employees", path = "employee")
-public interface EmployeeRepo extends JpaRepository<Employees, Long> {
-
+public interface EmployeeRepo extends JpaRepository<Employees, Long>
+{
     Page<Employees> findByemployeeFirstNameContaining(@Param("name") String employeeFirstName, Pageable pageable);
-
 
 }
