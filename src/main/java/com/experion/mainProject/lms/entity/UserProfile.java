@@ -35,6 +35,7 @@ public class UserProfile {
     private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
     private Employees employee;
 

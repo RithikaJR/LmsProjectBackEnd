@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 
 @CrossOrigin(origins = "*")
@@ -27,7 +28,6 @@ public class JwtController {
 
 
     @PutMapping("*/userupdate/{employeeId}")
-    //@PreAuthorize("hasRole('Super Admin')")
     private String updateUser(@RequestBody Role role, @PathVariable("employeeId") Long employeeId){
         return  userProfileService.updateUser(role,employeeId);
     }
@@ -46,8 +46,11 @@ public class JwtController {
     }
 
     @PostMapping("*/user/change-password")
+    @PreAuthorize("hasRole('Super Admin') or hasRole('User')")
     private ChangePasswordResponse changePassword(@RequestBody ChangePassword changePassword){
         return userProfileService.changePassword(changePassword);
     }
+
+
 
 }
