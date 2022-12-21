@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RepositoryRestResource(collectionResourceRel = "courseApproval", path = "course-approval")
 @CrossOrigin(origins = "*")
-public interface CourseApprovalRepository extends JpaRepository<CourseApproval, Long> {
-
+public interface CourseApprovalRepository extends JpaRepository<CourseApproval, Long>
+{
 
 }
