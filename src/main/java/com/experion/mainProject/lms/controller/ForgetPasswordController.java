@@ -14,12 +14,14 @@ import javax.mail.MessagingException;
 @CrossOrigin(origins = "*")
 @RestController
 public class ForgetPasswordController {
+
+
     @Autowired
     UserProfileService userProfileService;
     private static final Logger logger= LoggerFactory.getLogger(ForgetPasswordController.class);
 
     @PostMapping("*/user/forget-password")
-    @PreAuthorize("hasRole('Super Admin') or hasRole('User')")
+    //@PreAuthorize("hasRole('Super Admin') or hasRole('User')")
     private String forgetPassword(ForgetPassword forgetPassword) throws MessagingException {
         logger.info("forget password");
         logger.error("forget password error");
