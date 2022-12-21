@@ -4,6 +4,7 @@ import com.experion.mainProject.lms.dto.*;
 import com.experion.mainProject.lms.entity.Role;
 import com.experion.mainProject.lms.service.JwtService;
 import com.experion.mainProject.lms.service.UserProfileService;
+import com.experion.mainProject.lms.service.UserProfileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class JwtController {
     private JwtService jwtService;
 
     @Autowired
-    UserProfileService userProfileService;
+    UserProfileServiceImpl userProfileService;
 
     @PostMapping({"/authenticate"})
     public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws Exception {
@@ -43,7 +44,7 @@ public class JwtController {
     }
 
     @PostMapping("*/user/change-password")
-    @PreAuthorize("hasRole('Super Admin') or hasRole('User')")
+   // @PreAuthorize("hasRole('Super Admin') or hasRole('User') or hasRole('Learning Admin')")
     private ChangePasswordResponse changePassword(@RequestBody ChangePassword changePassword){
         return userProfileService.changePassword(changePassword);
     }

@@ -21,8 +21,8 @@ public class Module {
     @Column(name = "module_id")
     private Long moduleId;
 
-    @Column(name = "module_number")
-    private int moduleNumber;
+    @Column(name = "module_serial_number")
+    private int moduleSerialNumber;
 
     @Column(name = "module_name")
     private String moduleName;

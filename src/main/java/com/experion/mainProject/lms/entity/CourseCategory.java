@@ -20,7 +20,7 @@ public class CourseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    private String categoryId;
+    private Long categoryId;
 
     @Column(name = "category_name")
     private String categoryName;
