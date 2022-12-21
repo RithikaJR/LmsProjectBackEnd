@@ -158,6 +158,48 @@ AUTO_INCREMENT = 1;
 
 
 
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`enrolled_course` (
+   `enrolled_course_id` BIGINT(20) AUTO_INCREMENT NOT NULL,
+   `course_id` BIGINT(20) NOT NULL,
+   `emp_id` BIGINT(20) NOT NULL,
+   `enrolled_date` DATE DEFAULT NULL,
+   `status` enum('completed','enrolled') default 'enrolled',
+   `employee_rating` BIGINT(20) default 5,
+   PRIMARY KEY (`enrolled_course_id`),
+   CONSTRAINT `fk_courses` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
+   CONSTRAINT `fk_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
+   )
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
+
+
+
+
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`completed_course` (
+   `completed_course_id` BIGINT(50) AUTO_INCREMENT NOT NULL,
+   `enrolled_course_id` BIGINT(20) NOT NULL,
+   `course_id` BIGINT(20) NOT NULL,
+   `emp_id` BIGINT(20) NOT NULL,
+   `status` enum('completed') default 'completed',
+   PRIMARY KEY (`completed_course_id`),
+   CONSTRAINT `fk_enrolled_course` FOREIGN KEY (`enrolled_course_id`) REFERENCES `enrolled_course` (`enrolled_course_id`),
+   CONSTRAINT `fk_coursess` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
+   CONSTRAINT `fk_employeess` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
+)
+ ENGINE=InnoDB
+ AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`feedback` (
+   `feedback_id` BIGINT(20) AUTO_INCREMENT NOT NULL,
+   `emp_id` BIGINT(20) NOT NULL,
+   `emp_name` varchar(255) NOT NULL,
+   `feedback`  TEXT NULL,
+   `status` Boolean default false,
+   PRIMARY KEY (`feedback_id`))
+ ENGINE=InnoDB
+ AUTO_INCREMENT = 1;
+
+
 
 
 

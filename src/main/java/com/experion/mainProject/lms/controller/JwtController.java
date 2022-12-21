@@ -27,7 +27,7 @@ public class JwtController {
 
 
     @PutMapping("*/userupdate/{employeeId}")
-//    @PreAuthorize("hasRole('Super Admin')")
+    //@PreAuthorize("hasRole('Super Admin')")
     private String updateUser(@RequestBody Role role, @PathVariable("employeeId") Long employeeId){
         return  userProfileService.updateUser(role,employeeId);
     }
