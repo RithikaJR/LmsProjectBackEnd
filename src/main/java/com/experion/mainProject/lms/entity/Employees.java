@@ -1,6 +1,7 @@
 package com.experion.mainProject.lms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "employees")
 @DynamicUpdate
+@Data
 public class Employees {
     @Id
     @Column(name = "emp_id")
@@ -31,7 +33,9 @@ public class Employees {
     @OneToMany(cascade = CascadeType.MERGE, mappedBy = "employee")
     @JsonIgnore
     private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
+public Employees(){
 
+}
     public Employees(Long employeeId, String employeeFirstName, String employeeLastName, String employeeEmail) {
         this.employeeId = employeeId;
         this.employeeFirstName = employeeFirstName;
@@ -39,39 +43,5 @@ public class Employees {
         this.employeeEmail = employeeEmail;
     }
 
-    public Employees() {
-    }
-
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getEmployeeFirstName() {
-        return employeeFirstName;
-    }
-
-    public void setEmployeeFirstName(String employeeFirstName) {
-        this.employeeFirstName = employeeFirstName;
-    }
-
-    public String getEmployeeLastName() {
-        return employeeLastName;
-    }
-
-    public void setEmployeeLastName(String employeeLastName) {
-        this.employeeLastName = employeeLastName;
-    }
-
-    public String getEmployeeEmail() {
-        return employeeEmail;
-    }
-
-    public void setEmployeeEmail(String employeeEmail) {
-        this.employeeEmail = employeeEmail;
-    }
 }
 

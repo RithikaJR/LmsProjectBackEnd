@@ -8,4 +8,5 @@ public class RejectMailRequest {
     private String employeeName;
     private String employeeEmail;
     private String courseName;
+    private String rejectionReason;
 }

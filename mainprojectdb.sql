@@ -20,9 +20,7 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`course` (
    `category_id` BIGINT(20) NOT NULL,
    `course_Duration` Time DEFAULT NULL,
    `course_rating` BIGINT(20) DEFAULT NULL,
-
-    
-   PRIMARY KEY (`course_id`),
+    PRIMARY KEY (`course_id`),
    KEY `fk_category` (`category_id`),
    CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `course_category` (`category_id`) on update cascade on delete cascade
  )
@@ -119,6 +117,7 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`course_approval` (
    `course_approval_id` BIGINT(20) AUTO_INCREMENT NOT NULL,
    `emp_id` BIGINT(20) NOT NULL,
    `emp_name` varchar(255) NOT NULL,
+   `emp_email` varchar(255) NOT NULL,
    `course_id` BIGINT(20) NOT NULL,
    `course_name`varchar(255) NOT NULL,
    `approval_status`varchar(255) default 'pending',
@@ -152,13 +151,9 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`enrolled_course` (
    `status` enum('completed','enrolled') default 'enrolled',
    `employee_rating` BIGINT(20) default 5,
    PRIMARY KEY (`enrolled_course_id`),
-<<<<<<< HEAD
-   CONSTRAINT `fk_courses` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) on update cascade on delete cascade,
+    CONSTRAINT `fk_courses` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) on update cascade on delete cascade,
    CONSTRAINT `fk_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)on update cascade on delete cascade
-=======
-   CONSTRAINT `fk_courses` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
-   CONSTRAINT `fk_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
->>>>>>> ea275439c9f89a58abce6c7c1987807cadbe2237
+
    )
 ENGINE=InnoDB
 AUTO_INCREMENT = 1;
@@ -174,13 +169,9 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`completed_course` (
    `status` enum('completed') default 'completed',
    PRIMARY KEY (`completed_course_id`),
    CONSTRAINT `fk_enrolled_course` FOREIGN KEY (`enrolled_course_id`) REFERENCES `enrolled_course` (`enrolled_course_id`),
-<<<<<<< HEAD
    CONSTRAINT `fk_coursess` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) on update cascade on delete cascade,
    CONSTRAINT `fk_employeess` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`) on update cascade on delete cascade
-=======
-   CONSTRAINT `fk_coursess` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
-   CONSTRAINT `fk_employeess` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
->>>>>>> ea275439c9f89a58abce6c7c1987807cadbe2237
+
 )
  ENGINE=InnoDB
  AUTO_INCREMENT = 1;
@@ -196,7 +187,6 @@ CREATE TABLE IF NOT EXISTS `LMSDATABASE`.`feedback` (
  AUTO_INCREMENT = 1;
 
 
-<<<<<<< HEAD
 
 
 
@@ -460,8 +450,7 @@ CREATE INDEX IDX_QRTZ_FT_TG ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_GROUP);
 commit;
 
 
-=======
->>>>>>> ea275439c9f89a58abce6c7c1987807cadbe2237
+
 
 
 

@@ -13,7 +13,7 @@ import java.util.Set;
 public class AddModule {
 
 
-//    private CourseCategory category;
+
    private Course course;
     private Module module;
     private Set<ModuleResource> moduleResourceItem;

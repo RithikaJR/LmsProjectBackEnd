@@ -47,7 +47,6 @@ public class JwtController {
     }
 
     @PostMapping("*/user/change-password")
-   // @PreAuthorize("hasRole('Super Admin') or hasRole('User') or hasRole('Learning Admin')")
     private ChangePasswordResponse changePassword(@RequestBody ChangePassword changePassword){
         return userProfileService.changePassword(changePassword);
     }

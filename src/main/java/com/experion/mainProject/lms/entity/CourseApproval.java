@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Table(name = "course_approval")
 @Data
 @DynamicUpdate
-//@IdClass(CourseApprovalId.class)
 public class CourseApproval {
 
     @Id
@@ -21,17 +20,11 @@ public class CourseApproval {
     @Column(name = "course_approval_id",updatable = false)
     private Long courseApprovalId;
 
-
-//    @ManyToOne
-//    @JsonIgnore
-//    @JoinColumn(name = "emp_id", nullable = false)
 @Column(name = "emp_id",updatable = false)
     private Long employeeId;
 
 
-//    @ManyToOne
-//    @JsonIgnore
-//    @JoinColumn(name = "course_id", nullable = false)
+
 @Column(name = "course_id",updatable = false)
     private Long courseId;
 

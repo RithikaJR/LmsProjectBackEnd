@@ -3,14 +3,13 @@ package com.experion.mainProject.lms.service;
 import com.experion.mainProject.lms.dao.CourseRepository;
 import com.experion.mainProject.lms.dao.EnrolledCourseRepository;
 import com.experion.mainProject.lms.dao.ModuleRepository;
-import com.experion.mainProject.lms.dto.AddCourse;
-import com.experion.mainProject.lms.dto.AddEnrolledCourse;
-import com.experion.mainProject.lms.dto.AddModule;
-import com.experion.mainProject.lms.dto.RejectMailRequest;
+import com.experion.mainProject.lms.dto.*;
 import com.experion.mainProject.lms.entity.*;
 import com.experion.mainProject.lms.entity.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -24,8 +23,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Service
-public class CourseServiceImpl implements CourseServices
-{
+public class CourseServiceImpl implements CourseServices {
     @Autowired
     private CourseRepository courseRepository;
 
@@ -41,33 +39,43 @@ public class CourseServiceImpl implements CourseServices
     private MailProperties mailProperties;
 
     @Override
-    public String addCourse(AddCourse addCourse)
-    {
+    public ResponseEntity addCourse(AddCourse addCourse) {
+
+
         Course course = addCourse.getCourse();
-        CourseCategory category= addCourse.getCategory();
-        course.setCategory(category);
-        courseRepository.save(course);
-        return "Course added successfully!";
+        if (course != null) {
+
+
+            CourseCategory category = addCourse.getCategory();
+            course.setCategory(category);
+            if (courseRepository.save(course) != null) {
+                return new ResponseEntity<>("Course added successfully!", HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("Course not added", HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
 
 
-
     @Override
-    public String addModule(AddModule addModule) {
+    public ResponseEntity addModule(AddModule addModule) {
         //retrive the module info from dto
         Module module = addModule.getModule();
-        module.setCourse(addModule.getCourse());
+        if (module != null) {
+            module.setCourse(addModule.getCourse());
 
-        //populate module with module resource
-        Set<ModuleResource> moduleResourceItems = addModule.getModuleResourceItem();
-        moduleResourceItems.forEach(item -> module.add(item));
-
-
-        //save to database
-        moduleRepository.save(module);
+            //populate module with module resource
+            Set<ModuleResource> moduleResourceItems = addModule.getModuleResourceItem();
+            moduleResourceItems.forEach(item -> module.add(item));
 
 
-        return "Module added successfully!";
+            //save to database
+            if (moduleRepository.save(module) != null) {
+                return new ResponseEntity<>("Module added successfully!", HttpStatus.OK);
+            }
+
+        }
+        return new ResponseEntity<>("Module not added", HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 
@@ -78,8 +86,9 @@ public class CourseServiceImpl implements CourseServices
 
         MimeMessageHelper messageHelper = new MimeMessageHelper(message, StandardCharsets.UTF_8.toString());
         messageHelper.setSubject("L&D Team:Course Approval");
-        messageHelper.setText("Hi "+rejectMailRequest.getEmployeeName()+",\nWe regret to inform you that the course "
-                +"'"+rejectMailRequest.getCourseName()+"'"+" that you have enrolled for has been rejected.Please ensure to enroll for courses " +
+        messageHelper.setText("Hi " + rejectMailRequest.getEmployeeName() + ",\nWe regret to inform you that the course "
+                + "'" + rejectMailRequest.getCourseName() + "'" + " that you have enrolled for has been rejected.\nReason for Rejection: " + rejectMailRequest.getRejectionReason() +
+                "Please ensure to enroll for courses " +
                 "that are relevant to your current domain\nThanks & Regards,\nL&D Team");
         messageHelper.setFrom("lmslearningapp@gmail.com");
         messageHelper.setTo(rejectMailRequest.getEmployeeEmail());
@@ -90,7 +99,8 @@ public class CourseServiceImpl implements CourseServices
 
     @Override
     public void enrollCourse(AddEnrolledCourse addEnrolledCourse) {
-        EnrolledCourse enrolledCourse=new EnrolledCourse();
+        //to post newly enrolled course to database
+        EnrolledCourse enrolledCourse = new EnrolledCourse();
         enrolledCourse.setEnrolledDate(addEnrolledCourse.getEnrolledDate());
         enrolledCourse.setEmployee(addEnrolledCourse.getEmployeeId());
         enrolledCourse.setCourse(addEnrolledCourse.getCourseId());
@@ -99,18 +109,19 @@ public class CourseServiceImpl implements CourseServices
 
 
     @Override
-    public List<Course> getEnrolledCourse(Long employeeId) {
+    public ListEnrolledCourseResponse getEnrolledCourse(Long employeeId) {
+    //to list courses enrolled by a particular employee
+        List<EnrolledCourse> enrolledCourses = enrolledCourseRepository.findAll();
+        List<Course> coursesEnrolled = new ArrayList<>();
+        List<Long> enrolledCourseId=new ArrayList<>();
 
-        List<EnrolledCourse> enrolledCourses=enrolledCourseRepository.findAll();
-        List<Course> coursesEnrolled=new ArrayList<>();
-
-        for(EnrolledCourse enrolledCourse:enrolledCourses)
-        {
-            if(Objects.equals(enrolledCourse.getEmployee().getEmployeeId(), employeeId)){
+        for (EnrolledCourse enrolledCourse : enrolledCourses) {
+            if (Objects.equals(enrolledCourse.getEmployee().getEmployeeId(), employeeId)) {
                 coursesEnrolled.add(enrolledCourse.getCourse());
+                enrolledCourseId.add(enrolledCourse.getEnrolledCourseId());
 
             }
         }
-        return coursesEnrolled;
+        return new ListEnrolledCourseResponse(coursesEnrolled,enrolledCourseId);
     }
 }

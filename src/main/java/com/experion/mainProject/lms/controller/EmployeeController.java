@@ -22,7 +22,7 @@ public class EmployeeController
     private EmployeeService employeeService;
 
     @PostMapping("*/employee/upload")
-    @PreAuthorize("hasRole('Super Admin')")
+    //@PreAuthorize("hasRole('Super Admin')")
     public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) {
         if (Helper.checkExcelFormat(file)) {
             //true
@@ -38,7 +38,7 @@ public class EmployeeController
 
 
     @GetMapping("*/employee/all")
-    @PreAuthorize("hasRole('Super Admin')")
+   // @PreAuthorize("hasRole('Super Admin')")
     public List<Employees> getAllEmployee() {
         return this.employeeService.getAllEmployee();
     }

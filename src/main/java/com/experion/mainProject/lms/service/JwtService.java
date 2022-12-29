@@ -34,6 +34,7 @@ public class JwtService implements UserDetailsService {
     private AuthenticationManager authenticationManager;
 
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
+        //get username and password and generate token based on role
         String userName = jwtRequest.getUserName();
         String userPassword = jwtRequest.getUserPassword();
         authenticate(userName, userPassword);
@@ -47,6 +48,7 @@ public class JwtService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //inbuilt security method to load user by name
         UserProfile user = userDao.findByuserName(username);
 
         if (user != null) {
@@ -61,6 +63,7 @@ public class JwtService implements UserDetailsService {
     }
 
     private Set getAuthority(UserProfile user) {
+        //setting authorities based on role
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
 
             authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRoleName()));

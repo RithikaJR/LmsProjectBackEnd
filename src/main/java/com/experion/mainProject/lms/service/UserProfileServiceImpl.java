@@ -88,6 +88,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public ChangePasswordResponse changePassword(ChangePassword changePassword) {
+        //update current password after verifying existing user
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
         String encryptedPassword = bcrypt.encode(changePassword.getNewPassword());
         List<UserProfile> profile = userProfileRepository.findAll();
@@ -110,7 +111,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public void updateInitialLoginStatus(ChangeStatus changeStatus, Long userId) {
-
+//to identify newly logged in user
         UserProfile profile = userProfileRepository.findByuserId(userId);
         profile.setInitialStatus(changeStatus.isInitialStatus());
         userProfileRepository.save(profile);
@@ -120,6 +121,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public String forgetPasswordService(ForgetPassword forgetPassword) throws MessagingException {
+        //to reset password after verifying existing user
         UserProfile userProfile = userProfileRepository.findByuserName(forgetPassword.getEmployeeEmail());
 
 
