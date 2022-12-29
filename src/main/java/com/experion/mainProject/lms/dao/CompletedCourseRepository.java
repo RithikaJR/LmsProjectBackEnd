@@ -15,4 +15,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CompletedCourseRepository extends JpaRepository<CompletedCourse,Long>
 {
     Page<CompletedCourse> findByenrolledCourseId(@Param("id") Long enrolledCourseId, Pageable pageable);
+
+    Page<CompletedCourse> findByemployeeId(@Param("id") Long employeeId, Pageable pageable);
 }
