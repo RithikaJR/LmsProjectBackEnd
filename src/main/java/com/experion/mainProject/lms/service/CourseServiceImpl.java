@@ -113,12 +113,12 @@ public class CourseServiceImpl implements CourseServices {
     //to list courses enrolled by a particular employee
         List<EnrolledCourse> enrolledCourses = enrolledCourseRepository.findAll();
         List<Course> coursesEnrolled = new ArrayList<>();
-        List<Long> enrolledCourseId=new ArrayList<>();
+        List<EnrolledCourse> enrolledCourseId=new ArrayList<>();
 
         for (EnrolledCourse enrolledCourse : enrolledCourses) {
             if (Objects.equals(enrolledCourse.getEmployee().getEmployeeId(), employeeId)) {
                 coursesEnrolled.add(enrolledCourse.getCourse());
-                enrolledCourseId.add(enrolledCourse.getEnrolledCourseId());
+                enrolledCourseId.add(enrolledCourse);
 
             }
         }
